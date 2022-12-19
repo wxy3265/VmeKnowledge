@@ -11,6 +11,6 @@ class MainActivity : AppCompatActivity() {
         Log.d("Good", "onCreate: wxy3265")
         Log.d("Good", "onCreate: ZWZWW")
         Log.d("Good", "onCreate: WR")
-        Log.d("Good", "onCreate: Fisisy ok")
+        Log.d("Good", "onCreate: Fisisy")
     }
 }
