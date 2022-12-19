@@ -8,7 +8,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("Good", "onCreate: wxy3265")
+        Log.d("Good", "onCreate: wr")
         Log.d("Good", "onCreate: ZWZWW")
+        Log.d("Good", "onCreate: WR")
     }
 }
