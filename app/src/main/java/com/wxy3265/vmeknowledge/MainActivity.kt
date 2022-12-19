@@ -12,5 +12,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("Good", "onCreate: ZWZWW")
         Log.d("Good", "onCreate: WR")
         Log.d("Good", "onCreate: afda")
+        Log.d("Good", "onCreate: jbbjnkljl")
+
     }
 }
