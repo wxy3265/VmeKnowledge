@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VmeKnowledge</string>
+    <string name="remember">记得</string>
+    <string name="dontremember">不记得</string>
 </resources>

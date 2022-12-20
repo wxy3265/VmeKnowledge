@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
+
         <activity
             android:name=".StudyActivity"
             android:exported="false">
