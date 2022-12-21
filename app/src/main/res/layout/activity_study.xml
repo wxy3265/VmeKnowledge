@@ -9,8 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
-    <LinearLayout
+        android:layout_weight="5"
+        tools:ignore="UselessLeaf" />
+    <com.wxy3265.vmeknowledge.KnowledgeEditor
+        android:id="@+id/StudyActivityKnowledgeViewer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="85"
@@ -48,5 +50,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="5"
+        tools:ignore="UselessLeaf" />
 </LinearLayout>

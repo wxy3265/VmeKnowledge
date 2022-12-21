@@ -8,5 +8,6 @@ class StudyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_study)
         supportActionBar?.hide()
+        
     }
 }
