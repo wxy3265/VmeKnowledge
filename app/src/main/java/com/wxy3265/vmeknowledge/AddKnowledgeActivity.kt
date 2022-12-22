@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wxy3265.vmeknowledge.KnowledgeEditor.OnTextChangeListener
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
 
+
 class AddKnowledgeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +18,9 @@ class AddKnowledgeActivity : AppCompatActivity() {
         AddEditor.setEditorFontColor(Color.BLACK)
         AddEditor.setPadding(10, 10, 10, 10)
         AddEditor.setPlaceholder("Insert text here...")
+        AddEditor.setOnTextChangeListener(OnTextChangeListener { text -> // Do Something
+            AddEditorPreview.setText(text)
+        })
         action_undo.setOnClickListener { AddEditor.undo() }
         action_redo.setOnClickListener { AddEditor.redo() }
         action_bold.setOnClickListener { AddEditor.setBold() }

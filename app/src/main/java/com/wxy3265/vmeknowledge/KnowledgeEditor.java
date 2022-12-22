@@ -65,17 +65,14 @@ public class KnowledgeEditor extends WebView {
     }
 
     public interface OnTextChangeListener {
-
         void onTextChange(String text);
     }
 
     public interface OnDecorationStateListener {
-
         void onStateChangeListener(String text, List<Type> types);
     }
 
     public interface AfterInitialLoadListener {
-
         void onAfterInitialLoad(boolean isReady);
     }
 
