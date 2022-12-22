@@ -24,6 +24,8 @@ class AddKnowledgeActivity : AppCompatActivity() {
     private var TAG: String = "AddKnowledgeActivity"
     val takePhoto = 1
     val fromAlbum = 2
+    val fromAudio = 3
+    val fromVideo = 4
     lateinit var imageUri: Uri
     lateinit var outputImage:File
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,15 +102,16 @@ class AddKnowledgeActivity : AppCompatActivity() {
         }
 
         action_insert_audio.setOnClickListener {
-            AddEditor.insertAudio(
-                "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3"
-            )
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "audio/*"
+            startActivityForResult(intent, fromAudio)
         }
         action_insert_video.setOnClickListener {
-            AddEditor.insertVideo(
-                "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_10MB.mp4",
-                360
-            )
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "video/*"
+            startActivityForResult(intent, fromVideo)
         }
         action_insert_link.setOnClickListener {
             AddEditor.insertLink(
@@ -137,6 +140,20 @@ class AddKnowledgeActivity : AppCompatActivity() {
                             uri.toString(),
                             "dachshund", 320
                         )
+                    }
+                }
+            }
+            fromAudio -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    data.data?.let { uri ->
+                        AddEditor.insertAudio( uri.toString() )
+                    }
+                }
+            }
+            fromVideo -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    data.data?.let { uri ->
+                        AddEditor.insertVideo( uri.toString() , 320)
                     }
                 }
             }
