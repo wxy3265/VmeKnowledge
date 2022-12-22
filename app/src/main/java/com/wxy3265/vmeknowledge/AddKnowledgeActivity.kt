@@ -1,14 +1,31 @@
 package com.wxy3265.vmeknowledge
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Matrix
+import android.media.ExifInterface
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.wxy3265.vmeknowledge.KnowledgeEditor.OnTextChangeListener
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
-
+import java.io.File
 
 class AddKnowledgeActivity : AppCompatActivity() {
+    private var TAG: String = "AddKnowledgeActivity"
+    val takePhoto = 1
+    val fromAlbum = 2
+    lateinit var imageUri: Uri
+    lateinit var outputImage:File
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_knowledge)
@@ -58,15 +75,28 @@ class AddKnowledgeActivity : AppCompatActivity() {
         action_insert_bullets.setOnClickListener { AddEditor.setBullets() }
         action_insert_numbers.setOnClickListener { AddEditor.setNumbers() }
         action_insert_image.setOnClickListener {
-            AddEditor.insertImage(
-                "https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg",
-                "dachshund", 320
-            )
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            startActivityForResult(intent, fromAlbum)
+
         }
-        action_insert_youtube.setOnClickListener {
-            AddEditor.insertYoutubeVideo(
-                "https://www.youtube.com/embed/pS5peqApgUA"
-            )
+        action_insert_camera.setOnClickListener {
+            outputImage = File(externalCacheDir, "output_image.jpg")
+            if (outputImage.exists()) {
+                outputImage.delete()
+            }
+            outputImage.createNewFile()
+            imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                FileProvider.getUriForFile(this,
+                    "com.wxy3265.vmeknowledge.fileprovider",
+                    outputImage)
+            } else {
+                Uri.fromFile(outputImage)
+            }
+            val intent = Intent("android.media.action.IMAGE_CAPTURE")
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            startActivityForResult(intent, takePhoto)
         }
 
         action_insert_audio.setOnClickListener {
@@ -87,5 +117,29 @@ class AddKnowledgeActivity : AppCompatActivity() {
             )
         }
         action_insert_checkbox.setOnClickListener { AddEditor.insertTodo() }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            takePhoto -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    AddEditor.insertImage(
+                        imageUri.toString(),
+                        "dachshund", 320
+                    )
+                }
+            }
+            fromAlbum -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    data.data?.let { uri ->
+                        AddEditor.insertImage(
+                            uri.toString(),
+                            "dachshund", 320
+                        )
+                    }
+                }
+            }
+        }
     }
 }
