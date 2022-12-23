@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple_700">
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -141,7 +140,6 @@
                 android:contentDescription="@null"
                 android:src="@drawable/bg_color" />
 
-
             <ImageButton
                 android:id="@+id/action_indent"
                 android:layout_width="48dp"
@@ -260,19 +258,35 @@
     <com.wxy3265.vmeknowledge.KnowledgeEditor
         android:id="@+id/AddEditor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="HTML Preview"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/AddEditorPreview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp" />
+        android:layout_marginHorizontal="20dp">
+        <Button
+            android:id="@+id/AddButtonAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="添加"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:backgroundTint="@color/green"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:id="@+id/AddButtonDelete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
+            android:textSize="18sp"
+            android:text="清除并返回"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
 
 </LinearLayout>

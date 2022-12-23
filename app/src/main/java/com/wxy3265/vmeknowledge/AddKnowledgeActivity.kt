@@ -1,24 +1,21 @@
 package com.wxy3265.vmeknowledge
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Matrix
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
-import androidx.activity.result.ActivityResult
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.wxy3265.vmeknowledge.KnowledgeEditor.OnTextChangeListener
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class AddKnowledgeActivity : AppCompatActivity() {
     private var TAG: String = "AddKnowledgeActivity"
@@ -32,14 +29,31 @@ class AddKnowledgeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_knowledge)
         supportActionBar?.hide()
+
         AddEditor.setEditorHeight(200)
         AddEditor.setFontSize(22)
         AddEditor.setEditorFontColor(Color.BLACK)
         AddEditor.setPadding(10, 10, 10, 10)
-        AddEditor.setPlaceholder("Insert text here...")
-        AddEditor.setOnTextChangeListener(OnTextChangeListener { text -> // Do Something
-            AddEditorPreview.setText(text)
-        })
+        AddEditor.setPlaceholder("在这里输入...")
+        AddEditor.focusEditor()
+
+        AddButtonAdd.setOnClickListener {
+            val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
+            val db = dbHelper.writableDatabase
+            val formatter: SimpleDateFormat = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
+            val curDate: Date = Date(System.currentTimeMillis())
+            val date: String = formatter.format(curDate)
+            val value = ContentValues().apply {
+                put("content", AddEditor.html)
+                put("studytimes", 0)
+                put("reviewdate", date)
+            }
+            db.insert("Knowledge", null, value)
+            Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
+            AddEditor.html = ""
+        }
+        AddButtonDelete.setOnClickListener { finish() }
+
         action_undo.setOnClickListener { AddEditor.undo() }
         action_redo.setOnClickListener { AddEditor.redo() }
         action_bold.setOnClickListener { AddEditor.setBold() }
