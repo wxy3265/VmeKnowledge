@@ -40,8 +40,8 @@ class AddKnowledgeActivity : AppCompatActivity() {
         AddButtonAdd.setOnClickListener {
             val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
             val db = dbHelper.writableDatabase
-            val formatter: SimpleDateFormat = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
-            val curDate: Date = Date(System.currentTimeMillis())
+            val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
+            val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
             val value = ContentValues().apply {
                 put("content", AddEditor.html)
@@ -98,7 +98,10 @@ class AddKnowledgeActivity : AppCompatActivity() {
 
         }
         action_insert_camera.setOnClickListener {
-            outputImage = File(externalCacheDir, "output_image.jpg")
+            val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
+            val curDate = Date(System.currentTimeMillis())
+            val date: String = formatter.format(curDate)
+            outputImage = File(externalCacheDir, "Knowledge" + date + ".jpg")
             if (outputImage.exists()) {
                 outputImage.delete()
             }
