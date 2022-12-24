@@ -1,20 +1,25 @@
 package com.wxy3265.vmeknowledge
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.wxy3265.vmeknowledge.MainActivity
 
 class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>) :
             RecyclerView.Adapter<KnowledgeAdapter.ViewHolder>(){
-
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val KnowledgeCard: TextView = view.findViewById(R.id.KnowledgeCard)
         val DateCard: TextView = view.findViewById(R.id.DateCard)
+        val Card: LinearLayout = view.findViewById(R.id.Card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +35,11 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
             holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content))
         }
         holder.DateCard.text = knowledge.Date
+        holder.Card.setOnClickListener {
+            val intent = Intent(context, EditKnowledgeActivity::class.java)
+            intent.putExtra("ID", knowledge.Id)
+            startActivity(context, intent, null)
+        }
     }
 
     override fun getItemCount() = knowledgeList.size

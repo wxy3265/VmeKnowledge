@@ -37,6 +37,15 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.adapter = adapter
     }
 
+    override fun onResume() {
+        super.onResume()
+        initKnowledges()
+        val layoutManager = GridLayoutManager(this, 2)
+        MainCardRecyclerview.layoutManager = layoutManager
+        val adapter = KnowledgeAdapter(this, knowledgeList)
+        MainCardRecyclerview.adapter = adapter
+    }
+
     @SuppressLint("Range")
     private fun initKnowledges() {
         knowledgeList.clear()
