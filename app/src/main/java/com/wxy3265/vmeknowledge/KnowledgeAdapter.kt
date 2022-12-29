@@ -22,9 +22,22 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
         val Card: LinearLayout = view.findViewById(R.id.Card)
     }
 
+    private val TAG = "Adapter"
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.knowledge_item, parent, false)
-        return ViewHolder(view)
+        val viewHolder = ViewHolder(view)
+        viewHolder.itemView.setOnClickListener {
+            Log.d(TAG, "onCreateViewHolder: Clicked!")
+            val position = viewHolder.adapterPosition
+            val knowledge = knowledgeList[position]
+            val intent = Intent(context, EditKnowledgeActivity::class.java)
+            Log.d(TAG, "onCreateViewHolder: Definated!")
+            intent.putExtra("ID", knowledge.Id)
+            Log.d(TAG, "onCreateViewHolder: puted")
+            parent.context.startActivity(intent)
+        }
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,11 +48,12 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
             holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content))
         }
         holder.DateCard.text = knowledge.Date
-        holder.Card.setOnClickListener {
+        /*holder.Card.setOnClickListener {
             val intent = Intent(context, EditKnowledgeActivity::class.java)
             intent.putExtra("ID", knowledge.Id)
             startActivity(context, intent, null)
-        }
+            parent.context.startActivity(intent)
+        }*/
     }
 
     override fun getItemCount() = knowledgeList.size

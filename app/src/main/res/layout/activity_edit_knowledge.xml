@@ -13,7 +13,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/action_undo"
+                android:id="@+id/Edit_undo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -21,7 +21,7 @@
                 android:src="@drawable/undo" />
 
             <ImageButton
-                android:id="@+id/action_redo"
+                android:id="@+id/Edit_redo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -29,7 +29,7 @@
                 android:src="@drawable/redo" />
 
             <ImageButton
-                android:id="@+id/action_bold"
+                android:id="@+id/Edit_bold"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -37,7 +37,7 @@
                 android:src="@drawable/bold" />
 
             <ImageButton
-                android:id="@+id/action_italic"
+                android:id="@+id/Edit_italic"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -45,7 +45,7 @@
                 android:src="@drawable/italic" />
 
             <ImageButton
-                android:id="@+id/action_subscript"
+                android:id="@+id/Edit_subscript"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -53,7 +53,7 @@
                 android:src="@drawable/subscript" />
 
             <ImageButton
-                android:id="@+id/action_superscript"
+                android:id="@+id/Edit_superscript"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -61,7 +61,7 @@
                 android:src="@drawable/superscript" />
 
             <ImageButton
-                android:id="@+id/action_strikethrough"
+                android:id="@+id/Edit_strikethrough"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -69,7 +69,7 @@
                 android:src="@drawable/strikethrough" />
 
             <ImageButton
-                android:id="@+id/action_underline"
+                android:id="@+id/Edit_underline"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -77,7 +77,7 @@
                 android:src="@drawable/underline" />
 
             <ImageButton
-                android:id="@+id/action_heading1"
+                android:id="@+id/Edit_heading1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -85,7 +85,7 @@
                 android:src="@drawable/h1" />
 
             <ImageButton
-                android:id="@+id/action_heading2"
+                android:id="@+id/Edit_heading2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -93,7 +93,7 @@
                 android:src="@drawable/h2" />
 
             <ImageButton
-                android:id="@+id/action_heading3"
+                android:id="@+id/Edit_heading3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -101,7 +101,7 @@
                 android:src="@drawable/h3" />
 
             <ImageButton
-                android:id="@+id/action_heading4"
+                android:id="@+id/Edit_heading4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -109,7 +109,7 @@
                 android:src="@drawable/h4" />
 
             <ImageButton
-                android:id="@+id/action_heading5"
+                android:id="@+id/Edit_heading5"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -117,7 +117,7 @@
                 android:src="@drawable/h5" />
 
             <ImageButton
-                android:id="@+id/action_heading6"
+                android:id="@+id/Edit_heading6"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -125,7 +125,7 @@
                 android:src="@drawable/h6" />
 
             <ImageButton
-                android:id="@+id/action_txt_color"
+                android:id="@+id/Edit_txt_color"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -133,7 +133,7 @@
                 android:src="@drawable/txt_color" />
 
             <ImageButton
-                android:id="@+id/action_bg_color"
+                android:id="@+id/Edit_bg_color"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -141,7 +141,7 @@
                 android:src="@drawable/bg_color" />
 
             <ImageButton
-                android:id="@+id/action_indent"
+                android:id="@+id/Edit_indent"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -149,7 +149,7 @@
                 android:src="@drawable/indent" />
 
             <ImageButton
-                android:id="@+id/action_outdent"
+                android:id="@+id/Edit_outdent"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -157,7 +157,7 @@
                 android:src="@drawable/outdent" />
 
             <ImageButton
-                android:id="@+id/action_align_left"
+                android:id="@+id/Edit_align_left"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -165,7 +165,7 @@
                 android:src="@drawable/justify_left" />
 
             <ImageButton
-                android:id="@+id/action_align_center"
+                android:id="@+id/Edit_align_center"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -173,7 +173,7 @@
                 android:src="@drawable/justify_center" />
 
             <ImageButton
-                android:id="@+id/action_align_right"
+                android:id="@+id/Edit_align_right"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -181,7 +181,7 @@
                 android:src="@drawable/justify_right" />
 
             <ImageButton
-                android:id="@+id/action_insert_bullets"
+                android:id="@+id/Edit_insert_bullets"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -189,7 +189,7 @@
                 android:src="@drawable/bullets" />
 
             <ImageButton
-                android:id="@+id/action_insert_numbers"
+                android:id="@+id/Edit_insert_numbers"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -197,7 +197,7 @@
                 android:src="@drawable/numbers" />
 
             <ImageButton
-                android:id="@+id/action_blockquote"
+                android:id="@+id/Edit_blockquote"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -205,7 +205,7 @@
                 android:src="@drawable/blockquote" />
 
             <ImageButton
-                android:id="@+id/action_insert_camera"
+                android:id="@+id/Edit_insert_camera"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -213,7 +213,7 @@
                 android:src="@drawable/youtube" />
 
             <ImageButton
-                android:id="@+id/action_insert_image"
+                android:id="@+id/Edit_insert_image"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -221,7 +221,7 @@
                 android:src="@drawable/insert_image" />
 
             <ImageButton
-                android:id="@+id/action_insert_audio"
+                android:id="@+id/Edit_insert_audio"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -229,7 +229,7 @@
                 android:src="@drawable/music" />
 
             <ImageButton
-                android:id="@+id/action_insert_video"
+                android:id="@+id/Edit_insert_video"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -237,7 +237,7 @@
                 android:src="@drawable/video" />
 
             <ImageButton
-                android:id="@+id/action_insert_link"
+                android:id="@+id/Edit_insert_link"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -245,7 +245,7 @@
                 android:src="@drawable/insert_link" />
 
             <ImageButton
-                android:id="@+id/action_insert_checkbox"
+                android:id="@+id/Edit_insert_checkbox"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@null"
@@ -256,7 +256,7 @@
     </HorizontalScrollView>
 
     <com.wxy3265.vmeknowledge.KnowledgeEditor
-        android:id="@+id/AddEditor"
+        android:id="@+id/EditEditor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
@@ -277,7 +277,7 @@
             android:backgroundTint="@color/green"
             style="?android:attr/buttonBarButtonStyle" />
         <Button
-            android:id="@+id/EditButtonBack"
+            android:id="@+id/EditButtonDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -285,7 +285,7 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/red"
             android:textSize="18sp"
-            android:text="返回"
+            android:text="删除"
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 

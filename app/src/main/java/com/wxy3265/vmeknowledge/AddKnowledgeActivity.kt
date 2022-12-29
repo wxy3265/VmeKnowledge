@@ -54,50 +54,50 @@ class AddKnowledgeActivity : AppCompatActivity() {
         }
         AddButtonDelete.setOnClickListener { finish() }
 
-        action_undo.setOnClickListener { AddEditor.undo() }
-        action_redo.setOnClickListener { AddEditor.redo() }
-        action_bold.setOnClickListener { AddEditor.setBold() }
-        action_italic.setOnClickListener { AddEditor.setItalic() }
-        action_subscript.setOnClickListener { AddEditor.setSubscript() }
-        action_superscript.setOnClickListener { AddEditor.setSuperscript() }
-        action_strikethrough.setOnClickListener { AddEditor.setStrikeThrough() }
-        action_underline.setOnClickListener { AddEditor.setUnderline() }
-        action_heading1.setOnClickListener { AddEditor.setHeading(1) }
-        action_heading2.setOnClickListener { AddEditor.setHeading(2) }
-        action_heading3.setOnClickListener { AddEditor.setHeading(3) }
-        action_heading4.setOnClickListener { AddEditor.setHeading(4) }
-        action_heading5.setOnClickListener { AddEditor.setHeading(5) }
-        action_heading6.setOnClickListener { AddEditor.setHeading(6) }
-        action_txt_color.setOnClickListener(object : View.OnClickListener {
+        Add_undo.setOnClickListener { AddEditor.undo() }
+        Add_redo.setOnClickListener { AddEditor.redo() }
+        Add_bold.setOnClickListener { AddEditor.setBold() }
+        Add_italic.setOnClickListener { AddEditor.setItalic() }
+        Add_subscript.setOnClickListener { AddEditor.setSubscript() }
+        Add_superscript.setOnClickListener { AddEditor.setSuperscript() }
+        Add_strikethrough.setOnClickListener { AddEditor.setStrikeThrough() }
+        Add_underline.setOnClickListener { AddEditor.setUnderline() }
+        Add_heading1.setOnClickListener { AddEditor.setHeading(1) }
+        Add_heading2.setOnClickListener { AddEditor.setHeading(2) }
+        Add_heading3.setOnClickListener { AddEditor.setHeading(3) }
+        Add_heading4.setOnClickListener { AddEditor.setHeading(4) }
+        Add_heading5.setOnClickListener { AddEditor.setHeading(5) }
+        Add_heading6.setOnClickListener { AddEditor.setHeading(6) }
+        Add_txt_color.setOnClickListener(object : View.OnClickListener {
             private var isChanged = false
             override fun onClick(v: View) {
                 AddEditor.setTextColor(if (isChanged) Color.BLACK else Color.RED)
                 isChanged = !isChanged
             }
         })
-        action_bg_color.setOnClickListener(object : View.OnClickListener {
+        Add_bg_color.setOnClickListener(object : View.OnClickListener {
             private var isChanged = false
             override fun onClick(v: View) {
                 AddEditor.setTextBackgroundColor(if (isChanged) Color.TRANSPARENT else Color.YELLOW)
                 isChanged = !isChanged
             }
         })
-        action_indent.setOnClickListener { AddEditor.setIndent() }
-        action_outdent.setOnClickListener { AddEditor.setOutdent() }
-        action_align_left.setOnClickListener { AddEditor.setAlignLeft() }
-        action_align_center.setOnClickListener { AddEditor.setAlignCenter() }
-        action_align_right.setOnClickListener { AddEditor.setAlignRight() }
-        action_blockquote.setOnClickListener { AddEditor.setBlockquote() }
-        action_insert_bullets.setOnClickListener { AddEditor.setBullets() }
-        action_insert_numbers.setOnClickListener { AddEditor.setNumbers() }
-        action_insert_image.setOnClickListener {
+        Add_indent.setOnClickListener { AddEditor.setIndent() }
+        Add_outdent.setOnClickListener { AddEditor.setOutdent() }
+        Add_align_left.setOnClickListener { AddEditor.setAlignLeft() }
+        Add_align_center.setOnClickListener { AddEditor.setAlignCenter() }
+        Add_align_right.setOnClickListener { AddEditor.setAlignRight() }
+        Add_blockquote.setOnClickListener { AddEditor.setBlockquote() }
+        Add_insert_bullets.setOnClickListener { AddEditor.setBullets() }
+        Add_insert_numbers.setOnClickListener { AddEditor.setNumbers() }
+        Add_insert_image.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type = "image/*"
             startActivityForResult(intent, fromAlbum)
 
         }
-        action_insert_camera.setOnClickListener {
+        Add_insert_camera.setOnClickListener {
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
@@ -118,25 +118,25 @@ class AddKnowledgeActivity : AppCompatActivity() {
             startActivityForResult(intent, takePhoto)
         }
 
-        action_insert_audio.setOnClickListener {
+        Add_insert_audio.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type = "audio/*"
             startActivityForResult(intent, fromAudio)
         }
-        action_insert_video.setOnClickListener {
+        Add_insert_video.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type = "video/*"
             startActivityForResult(intent, fromVideo)
         }
-        action_insert_link.setOnClickListener {
+        Add_insert_link.setOnClickListener {
             AddEditor.insertLink(
                 "https://github.com/wasabeef",
                 "wasabeef"
             )
         }
-        action_insert_checkbox.setOnClickListener { AddEditor.insertTodo() }
+        Add_insert_checkbox.setOnClickListener { AddEditor.insertTodo() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
