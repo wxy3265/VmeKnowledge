@@ -44,16 +44,10 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
         val knowledge = knowledgeList[position]
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content, Html.FROM_HTML_MODE_COMPACT))
-        }else {
+        } else {
             holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content))
         }
         holder.DateCard.text = knowledge.Date
-        /*holder.Card.setOnClickListener {
-            val intent = Intent(context, EditKnowledgeActivity::class.java)
-            intent.putExtra("ID", knowledge.Id)
-            startActivity(context, intent, null)
-            parent.context.startActivity(intent)
-        }*/
     }
 
     override fun getItemCount() = knowledgeList.size

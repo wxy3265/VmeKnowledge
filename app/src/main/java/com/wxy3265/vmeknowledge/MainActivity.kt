@@ -14,11 +14,14 @@ class MainActivity : AppCompatActivity() {
 
     private val knowledgeList = ArrayList<Knowledge>()
     private val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
+    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dbHelper.writableDatabase
+
+        Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 3600000)
 
         //该段代码用于启动其他活动作调试使用，后续编写请删除 by wxy3265
         MainAdd.setOnClickListener {
@@ -58,7 +61,9 @@ class MainActivity : AppCompatActivity() {
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val date = cursor.getString(cursor.getColumnIndex("reviewdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
-                knowledgeList.add(Knowledge(content, date, id))
+                val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
+                val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                knowledgeList.add(Knowledge(content, date, id, studyTimes, milliTime))
             } while (cursor.moveToNext())
             cursor.close()
         }

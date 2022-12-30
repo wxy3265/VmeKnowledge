@@ -11,12 +11,18 @@
         android:layout_height="0dp"
         android:layout_weight="5"
         tools:ignore="UselessLeaf" />
-    <com.wxy3265.vmeknowledge.KnowledgeEditor
-        android:id="@+id/StudyActivityKnowledgeViewer"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="85"
-        android:background="@drawable/borderline"/>
+        android:background="@drawable/borderline">
+        <TextView
+            android:id="@+id/StudyViewer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="22sp"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -24,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/StudyActivityButtonRemember"
+            android:id="@+id/StudyButtonRemember"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -36,7 +42,7 @@
             tools:ignore="NestedWeights"
             style="?android:attr/buttonBarButtonStyle" />
         <Button
-            android:id="@+id/StudyActivityButtonDontRemember"
+            android:id="@+id/StudyButtonForget"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

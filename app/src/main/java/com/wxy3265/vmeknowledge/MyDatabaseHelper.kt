@@ -11,6 +11,7 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int):
                               " id integer primary key autoincrement," +
                               "content text," +
                               "studytimes integer," +
+                              "milliTime integer," +
                               "reviewdate text)"
 
     override fun onCreate(db: SQLiteDatabase) {

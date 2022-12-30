@@ -1,13 +1,102 @@
 package com.wxy3265.vmeknowledge
 
+import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_add_knowledge.*
+import kotlinx.android.synthetic.main.activity_edit_knowledge.*
+import kotlinx.android.synthetic.main.activity_study.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StudyActivity : AppCompatActivity() {
+
+    private val TAG = "StudyActivity"
+
+    private val reviewInterval = intArrayOf(1, 2, 4, 7, 15, 30, 90, 180)
+    private val reviewList = ArrayList<Knowledge>()
+    private var currentKnowledge = 0
+
+    @SuppressLint("Range", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_study)
         supportActionBar?.hide()
-        
+
+
+        val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
+        val db = dbHelper.writableDatabase
+        val cursor = db.query("Knowledge", null, null, null,
+            null, null, null)
+        if (cursor.moveToFirst()) {
+            do {
+                Log.d("cursor", "initKnowledges: suc")
+                val content = cursor.getString(cursor.getColumnIndex("content"))
+                val date = cursor.getString(cursor.getColumnIndex("reviewdate"))
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
+                val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
+                val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                if (studyTimes <= 7) {
+                    Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
+                            + "=" + (System.currentTimeMillis() / 1000 - milliTime)
+                            + ">" + reviewInterval.get(studyTimes) * 86400)
+                    if (System.currentTimeMillis() / 1000 - milliTime > reviewInterval[studyTimes] * 86400) {
+
+                        reviewList.add(Knowledge(content, date, id, studyTimes, milliTime))
+                    }
+                }
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        if (reviewList.size > 0) showContent(reviewList[currentKnowledge].Content)
+        if (reviewList.size > 0) showContent(reviewList[currentKnowledge].Content)
+        else {
+            Toast.makeText(this, "无可复习知识", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
+        StudyButtonRemember.setOnClickListener {
+            val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
+            val curDate = Date(System.currentTimeMillis())
+            val date: String = formatter.format(curDate)
+            val value = ContentValues().apply {
+                put("studytimes", reviewList[currentKnowledge].StudyTimes + 1)
+                put("reviewdate", date)
+                put("milliTime", System.currentTimeMillis() / 1000)
+            }
+            db.update("Knowledge", value, "id = ?",
+                arrayOf(reviewList[currentKnowledge].Id.toString()))
+            currentKnowledge++
+            if (currentKnowledge >= reviewList.size) {
+                Toast.makeText(this, "复习完成", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            else showContent(reviewList[currentKnowledge].Content)
+        }
+        StudyButtonForget.setOnClickListener {
+            reviewList.add(reviewList[currentKnowledge])
+            currentKnowledge++
+            if (currentKnowledge >= reviewList.size) {
+                Toast.makeText(this, "复习完成", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            else showContent(reviewList[currentKnowledge].Content)
+        }
+
     }
+
+    private fun showContent(Content: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StudyViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
+        } else {
+            StudyViewer.setText(Html.fromHtml(Content))
+        }
+    }
+
 }

@@ -47,6 +47,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 put("content", AddEditor.html)
                 put("studytimes", 0)
                 put("reviewdate", date)
+                put("milliTime", System.currentTimeMillis() / 1000)
             }
             db.insert("Knowledge", null, value)
             Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()

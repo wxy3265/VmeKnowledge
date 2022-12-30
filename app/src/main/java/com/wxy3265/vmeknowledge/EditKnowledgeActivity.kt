@@ -61,14 +61,6 @@ class EditKnowledgeActivity : AppCompatActivity() {
         EditEditor.focusEditor()
 
         EditButtonSave.setOnClickListener {
-            val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
-            val curDate = Date(System.currentTimeMillis())
-            val date: String = formatter.format(curDate)
-            val value = ContentValues().apply {
-                put("content", EditEditor.html)
-                put("studytimes", 0)
-                put("reviewdate", date)
-            }
             val values = ContentValues()
             values.put("Content", EditEditor.html)
             db.update("Knowledge", values, "id = ?", arrayOf(extraData.toString()))
