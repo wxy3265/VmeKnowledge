@@ -9,7 +9,7 @@
         android:id="@+id/MainToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/purple_500"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -20,11 +20,11 @@
         android:layout_height="0dp" />
     <Button
         android:id="@+id/MainStudy"
-        android:layout_margin="7dp"
+        android:layout_margin="10dp"
         android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/purple_700"
+        android:background="@color/purple_500"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="开始学习"/>

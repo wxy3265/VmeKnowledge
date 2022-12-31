@@ -19,7 +19,7 @@ class StudyActivity : AppCompatActivity() {
 
     private val TAG = "StudyActivity"
 
-    private val reviewInterval = intArrayOf(1, 2, 4, 7, 15, 30, 90, 180)
+    private val reviewInterval = intArrayOf(0, 1, 2, 4, 7, 15, 30, 90, 180)
     private val reviewList = ArrayList<Knowledge>()
     private var currentKnowledge = 0
 
@@ -42,7 +42,7 @@ class StudyActivity : AppCompatActivity() {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
-                if (studyTimes <= 7) {
+                if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
                             + "=" + (System.currentTimeMillis() / 1000 - milliTime)
                             + ">" + reviewInterval.get(studyTimes) * 86400)
