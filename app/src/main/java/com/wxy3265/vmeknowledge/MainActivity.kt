@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         val db = dbHelper.writableDatabase
         val cursor = db.query("Knowledge", null, null, null,
                                     null, null, null)
+        remainToReview = 0
         if (cursor.moveToFirst()) {
             do {
                 Log.d("cursor", "initKnowledges: suc")
