@@ -274,8 +274,7 @@
             android:layout_marginEnd="8dp"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:backgroundTint="@color/green"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:backgroundTint="@color/green" />
         <Button
             android:id="@+id/AddButtonDelete"
             android:layout_width="0dp"
@@ -285,8 +284,7 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/red"
             android:textSize="18sp"
-            android:text="清除并返回"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:text="清除并返回" />
     </LinearLayout>
 
 </LinearLayout>

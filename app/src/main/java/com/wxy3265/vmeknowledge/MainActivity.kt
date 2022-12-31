@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,15 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(MainToolbar)
         dbHelper.writableDatabase
 
         Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 3600000)
 
-        //该段代码用于启动其他活动作调试使用，后续编写请删除 by wxy3265
-        MainAdd.setOnClickListener {
-            val intent = Intent(this, AddKnowledgeActivity::class.java)
-            startActivity(intent)
-        }
         MainStudy.setOnClickListener {
             val intent = Intent(this, StudyActivity::class.java)
             startActivity(intent)
@@ -38,6 +36,18 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.MainAdd -> startAdd()
+        }
+        return true
     }
 
     override fun onResume() {
@@ -67,6 +77,11 @@ class MainActivity : AppCompatActivity() {
             } while (cursor.moveToNext())
             cursor.close()
         }
+    }
+
+    private fun startAdd() {
+        val intent = Intent(this, AddKnowledgeActivity::class.java)
+        startActivity(intent)
     }
 
 }
