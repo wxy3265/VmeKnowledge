@@ -47,6 +47,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
             val value = ContentValues().apply {
                 put("content", AddEditor.html)
                 put("studytimes", 0)
+                put("createdate",date)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
             }

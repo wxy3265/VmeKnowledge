@@ -72,10 +72,12 @@ class MainActivity : AppCompatActivity() {
             do {
                 Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
-                val date = cursor.getString(cursor.getColumnIndex("reviewdate"))
+                val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
+                val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                if(id==0)continue
                 if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
                             + "=" + (System.currentTimeMillis() / 1000 - milliTime)
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                         remainToReview++
                     }
                 }
-                knowledgeList.add(Knowledge(content, date, id, studyTimes, milliTime))
+                knowledgeList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
             } while (cursor.moveToNext())
             cursor.close()
         }

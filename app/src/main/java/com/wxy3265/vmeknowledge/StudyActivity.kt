@@ -38,17 +38,19 @@ class StudyActivity : AppCompatActivity() {
             do {
                 Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
-                val date = cursor.getString(cursor.getColumnIndex("reviewdate"))
+                val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
+                val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                if(id==0) continue
                 if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
                             + "=" + (System.currentTimeMillis() / 1000 - milliTime)
                             + ">" + reviewInterval.get(studyTimes) * 86400)
                     if (System.currentTimeMillis() / 1000 - milliTime > reviewInterval[studyTimes] * 86400) {
 
-                        reviewList.add(Knowledge(content, date, id, studyTimes, milliTime))
+                        reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
                     }
                 }
             } while (cursor.moveToNext())
@@ -65,13 +67,19 @@ class StudyActivity : AppCompatActivity() {
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
+            val value0 = ContentValues().apply{
+                put("id",0)
+            }
             val value = ContentValues().apply {
+                put("content", reviewList[currentKnowledge].Content)
                 put("studytimes", reviewList[currentKnowledge].StudyTimes + 1)
+                put("createdate",reviewList[currentKnowledge].CreateDate)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
             }
-            db.update("Knowledge", value, "id = ?",
+            db.update("Knowledge", value0, "id = ?",
                 arrayOf(reviewList[currentKnowledge].Id.toString()))
+            db.insert("Knowledge",null, value)
             currentKnowledge++
             if (currentKnowledge >= reviewList.size) {
                 Toast.makeText(this, "复习完成", Toast.LENGTH_SHORT).show()
