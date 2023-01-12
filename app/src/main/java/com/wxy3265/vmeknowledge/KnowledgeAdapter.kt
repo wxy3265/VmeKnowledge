@@ -47,7 +47,7 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
         } else {
             holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content))
         }
-        holder.DateCard.text = knowledge.ReviewDate
+        holder.DateCard.text = knowledge.Date
     }
 
     override fun getItemCount() = knowledgeList.size

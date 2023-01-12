@@ -12,10 +12,10 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="34fae89b-7e64-44a8-9e5f-a74eb3bd2d2d">
+    <connection id="3d7e4cda-b21b-43ed-a74a-4a78904e870c">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
-    <connection id="d893cf59-2771-40a2-9bfc-fba7527aa96d">
+    <connection id="9c30335a-f1de-40f9-9a88-fe1f4f3d5b66">
       <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
@@ -23,12 +23,20 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="34fae89b-7e64-44a8-9e5f-a74eb3bd2d2d" object-ref="schemas/main/tables/Knowledge" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="34fae89b-7e64-44a8-9e5f-a74eb3bd2d2d" dataset="main.Knowledge" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="3d7e4cda-b21b-43ed-a74a-4a78904e870c" dataset="main.Knowledge" active-filter-id="6c700fa6-f078-4ed4-ac68-61740503ad2c">
+      <filter id="6c700fa6-f078-4ed4-ac68-61740503ad2c" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="3d7e4cda-b21b-43ed-a74a-4a78904e870c" dataset="main.android_metadata" active-filter-id="" />
+    <filter-actions connection-id="9c30335a-f1de-40f9-9a88-fe1f4f3d5b66" dataset="main.Knowledge" active-filter-id="351c2515-85e8-4173-ac54-1c55f9841104">
+      <filter id="351c2515-85e8-4173-ac54-1c55f9841104" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -50,10 +58,10 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="34fae89b-7e64-44a8-9e5f-a74eb3bd2d2d" active="true" signed="true">
+      <connection id="3d7e4cda-b21b-43ed-a74a-4a78904e870c" active="true" signed="true">
         <database>
           <name value="Connection" />
-          <description value="/" />
+          <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
           <database-version value="3.39" />
@@ -65,7 +73,7 @@
           <port value="" />
           <database value="" />
           <files>
-            <file path="/Users/Lenovo/Desktop/Knowledge.db" schema="main" />
+            <file path="C:\Users\wxy\AppData\Local\Google\AndroidStudio2021.3\device-explorer\Pixel_API_31_Android12_ [emulator-5554]\data\data\com.wxy3265.vmeknowledge\databases\Knowledge.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
@@ -137,13 +145,13 @@
           <object-name-filters />
         </object-filters>
       </connection>
-      <connection id="d893cf59-2771-40a2-9bfc-fba7527aa96d" active="true" signed="true">
+      <connection id="9c30335a-f1de-40f9-9a88-fe1f4f3d5b66" active="true" signed="true">
         <database>
           <name value="Connection 1" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="3.39" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -152,7 +160,7 @@
           <port value="" />
           <database value="" />
           <files>
-            <file path="sqlite.db" schema="main" />
+            <file path="C:\Users\wxy\AppData\Local\Google\AndroidStudio2021.3\device-explorer\Pixel_API_31_Android12_ [emulator-5554]\data\data\com.wxy3265.vmeknowledge\databases\Knowledge.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
