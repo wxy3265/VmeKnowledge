@@ -38,6 +38,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
         AddEditor.focusEditor()
 
         AddButtonAdd.setOnClickListener {
+            if (AddEditor.html != null) {
             val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
             val db = dbHelper.writableDatabase
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
@@ -49,12 +50,13 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
             }
-            db.insert("Knowledge", null, value)
-            Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
-            AddEditor.html = ""
+                db.insert("Knowledge", null, value)
+                Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
+                AddEditor.html = ""
+            }
+            else Toast.makeText(this, "无法创建空知识", Toast.LENGTH_SHORT).show()
         }
-        AddButtonDelete.setOnClickListener { finish() }
-
+            AddButtonDelete.setOnClickListener { finish() }
         Add_undo.setOnClickListener { AddEditor.undo() }
         Add_redo.setOnClickListener { AddEditor.redo() }
         Add_bold.setOnClickListener { AddEditor.setBold() }
@@ -144,7 +146,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             takePhoto -> {
-                if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK && data != null) {
                     AddEditor.insertImage(
                         imageUri.toString(),
                         "dachshund", 320
