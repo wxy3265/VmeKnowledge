@@ -2,6 +2,7 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -105,5 +106,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AddKnowledgeActivity::class.java)
         startActivity(intent)
     }
+
+
+
 
 }
