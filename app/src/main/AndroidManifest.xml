@@ -13,14 +13,23 @@
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
         <activity
+            android:name=".InspectKnowledgeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditKnowledgeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
             <intent-filter>
-                <action android:name="com.wxy3265.vmeknowledge.EDITKNOWLEDGE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.wxy3265.vmeknowledge.EDITKNOWLEDGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
