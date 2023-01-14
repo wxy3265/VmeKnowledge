@@ -43,7 +43,7 @@ class StudyActivity : AppCompatActivity() {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
-                if(id==0) continue
+                if(studyTimes == -1) continue
                 if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
                             + "=" + (System.currentTimeMillis() / 1000 - milliTime)
@@ -57,7 +57,6 @@ class StudyActivity : AppCompatActivity() {
             cursor.close()
         }
         if (reviewList.size > 0) showContent(reviewList[currentKnowledge].Content)
-        if (reviewList.size > 0) showContent(reviewList[currentKnowledge].Content)
         else {
             Toast.makeText(this, "无可复习知识", Toast.LENGTH_SHORT).show()
             finish()
@@ -68,7 +67,7 @@ class StudyActivity : AppCompatActivity() {
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
             val value0 = ContentValues().apply{
-                put("id",0)
+                put("studytimes",-1)
             }
             val value = ContentValues().apply {
                 put("content", reviewList[currentKnowledge].Content)

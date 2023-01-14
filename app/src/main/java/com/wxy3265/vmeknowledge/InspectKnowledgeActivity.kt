@@ -35,18 +35,27 @@ class InspectKnowledgeActivity : AppCompatActivity() {
                 Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
-                val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
-                val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
-                if(id==0) continue
-                showContent(content)
+                if(studyTimes == -1)continue
+                showInspectContent(content)
+                showReviewContent(createdate+ "共复习 次")
+                val Recursor = db.query("Knowledge", null, "createdate=?",
+                    arrayOf(createdate), null, null, null)
+                if(Recursor.moveToFirst()){
+                    do{
+                        val reviewdate = Recursor.getString(Recursor.getColumnIndex("reviewdate"))
+                        val studytimes = Recursor.getString(Recursor.getColumnIndex("studytimes"))
+                        showReviewContent(reviewdate+ "第"+studytimes+"次学习")
+                    }while (Recursor.moveToNext())
+                    Recursor.close()
+                }
             } while (cursor.moveToNext())
-            cursor.close()
         }
+        cursor.close()
     }
 
-    private fun showContent(Content: String) {
+    private fun showInspectContent(Content: String) {
         val InspectViewer = findViewById<TextView>(R.id.InspectViewer)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             InspectViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
@@ -55,4 +64,12 @@ class InspectKnowledgeActivity : AppCompatActivity() {
         }
     }
 
+    private fun showReviewContent(Content: String) {
+        val ReviewViewer = findViewById<TextView>(R.id.ReviewViewer)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            ReviewViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
+        } else {
+            ReviewViewer.setText(Html.fromHtml(Content))
+        }
+    }
 }
