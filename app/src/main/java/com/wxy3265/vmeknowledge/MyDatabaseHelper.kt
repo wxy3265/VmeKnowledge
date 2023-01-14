@@ -10,6 +10,7 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int):
     private  val createList = "create table Knowledge (" +
                               " id integer primary key autoincrement," +
                               "content text," +
+                              "tag text," +
                               "createdate text,"+
                               "studytimes integer," +
                               "milliTime integer," +
