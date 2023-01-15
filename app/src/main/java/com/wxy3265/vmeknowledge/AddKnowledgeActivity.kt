@@ -57,7 +57,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
             }
             else Toast.makeText(this, "无法创建空知识", Toast.LENGTH_SHORT).show()
         }
-            AddButtonDelete.setOnClickListener { finish() }
+        AddButtonDelete.setOnClickListener { finish() }
         Add_undo.setOnClickListener { AddEditor.undo() }
         Add_redo.setOnClickListener { AddEditor.redo() }
         Add_bold.setOnClickListener { AddEditor.setBold() }

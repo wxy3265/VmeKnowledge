@@ -31,7 +31,7 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
             Log.d(TAG, "onCreateViewHolder: Clicked!")
             val position = viewHolder.adapterPosition
             val knowledge = knowledgeList[position]
-            val intent = Intent(context, EditKnowledgeActivity::class.java)
+            val intent = Intent(context, InspectKnowledgeActivity::class.java)
             Log.d(TAG, "onCreateViewHolder: Definated!")
             intent.putExtra("ID", knowledge.Id)
             Log.d(TAG, "onCreateViewHolder: puted")
