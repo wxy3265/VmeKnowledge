@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val reviewInterval = intArrayOf(0, 1, 2, 4, 7, 15, 30, 90, 180)
     private val TAG = "MainActivity"
     private var remainToReview = 0
+    private val fruitList=ArrayList<Fruit>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,28 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
+        initFruits()
+        val layoutManager2=LinearLayoutManager(this)
+        layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager=layoutManager2
+        val adapter2=FruitAdapter(fruitList)
+        recyclerView.adapter=adapter2
     }
+    private fun initFruits(){
+        fruitList.add(Fruit("apple"))
+        fruitList.add(Fruit("banana"))
+        fruitList.add(Fruit("grape"))
+        fruitList.add(Fruit("watermalon"))
+        fruitList.add(Fruit("cherry"))
+        fruitList.add(Fruit("strawberry"))
+        fruitList.add(Fruit("mango"))
+        fruitList.add(Fruit("pineapple"))
+        fruitList.add(Fruit("pear"))
+        fruitList.add(Fruit("orange"))
+        fruitList.add(Fruit("hahahaha"))
+        fruitList.add(Fruit("haha"))
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)

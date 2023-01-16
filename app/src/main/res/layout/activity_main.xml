@@ -14,6 +14,10 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/recyclerView" />
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MainCardRecyclerview"
         android:layout_width="match_parent"
         android:layout_weight="93"
