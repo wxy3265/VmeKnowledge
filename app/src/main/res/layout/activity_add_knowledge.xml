@@ -18,7 +18,8 @@
                 android:layout_height="48dp"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:src="@drawable/undo" />
+                android:src="@drawable/undo"
+                />
 
             <ImageButton
                 android:id="@+id/Add_redo"
@@ -26,7 +27,8 @@
                 android:layout_height="48dp"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:src="@drawable/redo" />
+                android:src="@drawable/redo"/>
+
 
             <ImageButton
                 android:id="@+id/Add_bold"
