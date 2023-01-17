@@ -1,5 +1,6 @@
 package com.wxy3265.vmeknowledge
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -22,6 +23,7 @@ import android.content.Context
 
 class InspectKnowledgeActivity : AppCompatActivity() {
 
+    @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspect_knowledge)

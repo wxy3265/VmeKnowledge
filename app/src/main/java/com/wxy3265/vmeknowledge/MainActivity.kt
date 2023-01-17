@@ -17,11 +17,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val knowledgeList = ArrayList<Knowledge>()
+    private val knowledgeList                        = ArrayList<Knowledge>()
+    private val tagSet = ArrayList<String>()
     private val reviewInterval = intArrayOf(0, 1, 2, 4, 7, 15, 30, 90, 180)
     private val TAG = "MainActivity"
     private var remainToReview = 0
-    private val fruitList=ArrayList<Fruit>()
+    private val tagList=ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,32 +35,30 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, StudyActivity::class.java)
             startActivity(intent)
         }
+        MainStudy.setOnLongClickListener {
+
+            val intent = Intent(this, StudyActivity::class.java)
+            startActivity(intent)
+            true
+        }
 
         initKnowledges()
         val layoutManager = GridLayoutManager(this, 2)
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
-        initFruits()
+        initTags()
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager=layoutManager2
-        val adapter2=FruitAdapter(fruitList)
+        val adapter2=TagAdapter(tagList)
         recyclerView.adapter=adapter2
     }
-    private fun initFruits(){
-        fruitList.add(Fruit("apple"))
-        fruitList.add(Fruit("banana"))
-        fruitList.add(Fruit("grape"))
-        fruitList.add(Fruit("watermalon"))
-        fruitList.add(Fruit("cherry"))
-        fruitList.add(Fruit("strawberry"))
-        fruitList.add(Fruit("mango"))
-        fruitList.add(Fruit("pineapple"))
-        fruitList.add(Fruit("pear"))
-        fruitList.add(Fruit("orange"))
-        fruitList.add(Fruit("hahahaha"))
-        fruitList.add(Fruit("haha"))
+    private fun initTags(){
+        for (tag in tagSet) {
+            tagList.add(tag)
+            Log.d(TAG, "initTags: " + tag)
+        }
     }
 
 
@@ -82,6 +81,12 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
+        initTags()
+        val layoutManager2=LinearLayoutManager(this)
+        layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager=layoutManager2
+        val adapter2=TagAdapter(tagList)
+        recyclerView.adapter=adapter2
     }
 
     @SuppressLint("Range")
@@ -101,6 +106,11 @@ class MainActivity : AppCompatActivity() {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                val tag = cursor.getString(cursor.getColumnIndex("tag"))
+                val ktag = Tag(tag)
+                for (str in ktag.tSet!!) {
+                    tagSet.add(str)
+                }
                 if(studyTimes == -1)continue
                 if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
@@ -129,8 +139,5 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AddKnowledgeActivity::class.java)
         startActivity(intent)
     }
-
-
-
 
 }

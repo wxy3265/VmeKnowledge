@@ -50,6 +50,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 put("createdate",date)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
+                put("tag", AddEditTag.text.toString())
             }
                 db.insert("Knowledge", null, value)
                 Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
