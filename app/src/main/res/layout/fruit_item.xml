@@ -5,5 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fruitname"
-        android:layout_gravity="center" />
+        android:gravity="center"
+        android:layout_margin="2dp"
+        android:background="@drawable/fruit_edit"
+        android:textColor="#FF000000"/>
 </LinearLayout>
