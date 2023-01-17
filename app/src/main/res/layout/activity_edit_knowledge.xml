@@ -285,6 +285,16 @@
             android:backgroundTint="@color/red"
             android:textSize="18sp"
             android:text="删除" />
+        <Button
+            android:id="@+id/ChangeTag"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="18sp"
+            android:text="修改标签" />
     </LinearLayout>
 
 </LinearLayout>

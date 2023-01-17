@@ -263,12 +263,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
-    <EditText
-        android:id="@+id/AddEditTag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入标签"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -292,7 +286,17 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/red"
             android:textSize="18sp"
-            android:text="清除并返回" />
+            android:text="清除" />
+        <Button
+            android:id="@+id/AddTag"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="18sp"
+            android:text="添加标签" />
     </LinearLayout>
 
 </LinearLayout>

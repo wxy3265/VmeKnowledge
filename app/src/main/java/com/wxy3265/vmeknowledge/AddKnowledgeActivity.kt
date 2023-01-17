@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -37,6 +38,11 @@ class AddKnowledgeActivity : AppCompatActivity() {
         AddEditor.setPlaceholder("在这里输入...")
         AddEditor.focusEditor()
 
+        val AddTagButton: Button = findViewById(R.id.AddTag)
+        AddTagButton.setOnClickListener {
+            val ZhuanAddTag = Intent(this, ChooseTagActivity::class.java)
+            startActivity(ZhuanAddTag)
+        }
         AddButtonAdd.setOnClickListener {
             if (AddEditor.html != null) {
             val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
@@ -50,7 +56,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 put("createdate",date)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
-                put("tag", AddEditTag.text.toString())
+//                put("tag", AddEditTag.text.toString())
             }
                 db.insert("Knowledge", null, value)
                 Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()

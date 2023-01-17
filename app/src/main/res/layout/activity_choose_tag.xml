@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    tools:context=".ChooseTagActivity">
+
+    <!-- view for AdMob Interstitial Ad -->
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="选择该文章的标签"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        >
+        <EditText
+            android:id="@+id/newtagname"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="添加新标签"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="添加标签"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp">
+        <CheckBox android:id="@+id/checkbox_cheese"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:textSize="20sp"
+            android:text="  若干标签"
+            android:onClick="onCheckboxClicked"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_200"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="确定"
+        android:textSize="20dp"
+        />
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="取消"
+        android:textSize="20dp"
+        />
+
+</RelativeLayout>

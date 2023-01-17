@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
         val db = dbHelper.writableDatabase
         val cursor = db.query("Knowledge", null, null, null,
-                                    null, null, null)
+            null, null, null)
         remainToReview = 0
         if (cursor.moveToFirst()) {
             do {
