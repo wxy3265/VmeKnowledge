@@ -8,22 +8,28 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.util.ArraySet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val knowledgeList                        = ArrayList<Knowledge>()
-    private val tagSet = ArrayList<String>()
+    private val knowledgeList = ArrayList<Knowledge>()
+    @RequiresApi(Build.VERSION_CODES.M)
+    private val tagSet = ArraySet<String>()
     private val reviewInterval = intArrayOf(0, 1, 2, 4, 7, 15, 30, 90, 180)
     private val TAG = "MainActivity"
     private var remainToReview = 0
-    private val tagList=ArrayList<String>()
+    private val tagList = ArrayList<String>()
+     val chosenTag = Tag()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,20 +53,16 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
-        initTags()
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager=layoutManager2
-        val adapter2=TagAdapter(tagList)
-        recyclerView.adapter=adapter2
-    }
-    private fun initTags(){
+        MainTagRecyclerView.layoutManager=layoutManager2
+        tagList.clear()
         for (tag in tagSet) {
             tagList.add(tag)
-            Log.d(TAG, "initTags: " + tag)
         }
+        val adapter2=TagAdapter(tagList)
+        MainTagRecyclerView.adapter=adapter2
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
@@ -74,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onResume() {
         super.onResume()
         initKnowledges()
@@ -81,16 +84,21 @@ class MainActivity : AppCompatActivity() {
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = KnowledgeAdapter(this, knowledgeList)
         MainCardRecyclerview.adapter = adapter
-        initTags()
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager=layoutManager2
+        MainTagRecyclerView.layoutManager=layoutManager2
+        tagList.clear()
+        for (tag in tagSet) {
+            tagList.add(tag)
+        }
         val adapter2=TagAdapter(tagList)
-        recyclerView.adapter=adapter2
+        MainTagRecyclerView.adapter=adapter2
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("Range")
     private fun initKnowledges() {
+        tagSet.clear()
         knowledgeList.clear()
         val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
         val db = dbHelper.writableDatabase
@@ -108,14 +116,14 @@ class MainActivity : AppCompatActivity() {
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 val ktag = Tag(tag)
-                for (str in ktag.tSet!!) {
-                    tagSet.add(str)
+                if (ktag.orstr != "") {
+                    Log.d(TAG, "initKnowledges: orstr:" + ktag.orstr)
+                    for (str in ktag.tSet!!) {
+                        tagSet.add(str)
+                    }
                 }
                 if(studyTimes == -1)continue
                 if (studyTimes <= 8) {
-                    Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
-                            + "=" + (System.currentTimeMillis() / 1000 - milliTime)
-                            + ">" + reviewInterval.get(studyTimes) * 86400)
                     if (System.currentTimeMillis() / 1000 - milliTime > reviewInterval[studyTimes] * 86400) {
                         remainToReview++
                     }
@@ -138,6 +146,10 @@ class MainActivity : AppCompatActivity() {
     private fun startAdd() {
         val intent = Intent(this, AddKnowledgeActivity::class.java)
         startActivity(intent)
+    }
+
+    fun addChosenTag(tag: String) {
+        chosenTag.addTag(tag)
     }
 
 }

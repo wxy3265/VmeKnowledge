@@ -7,10 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class TagAdapter (val tagList: List<String>):RecyclerView.Adapter<TagAdapter.ViewHolder>(){
+class TagAdapter (val tagList: List<String>):RecyclerView.Adapter<TagAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
-        val fruitName:TextView=view.findViewById(R.id.tagname)
+        val tagName:TextView=view.findViewById(R.id.tagname)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,8 +26,8 @@ class TagAdapter (val tagList: List<String>):RecyclerView.Adapter<TagAdapter.Vie
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tag=tagList[position]
-        holder.fruitName.text=tag
+        holder.tagName.text = tag
     }
 
-    override fun getItemCount()=tagList.size
+    override fun getItemCount() = tagList.size
 }
