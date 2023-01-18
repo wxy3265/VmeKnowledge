@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_mycollection_bottom_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:background="@color/app_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:background="#e5e5e5"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90">
+
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/tv"
+                android:textColor="#1A1A1A"
+                android:textSize="@dimen/px_28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
+                android:text="@string/mine_certify_select" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv"
+                android:textColor="#1A1A1A"
+                android:textSize="@dimen/px_28"
+                android:id="@+id/tv_select_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_18"
+                android:text="0" />
+
+            <Button
+                android:textColor="@color/color_b7b8bd"
+                android:textSize="@dimen/px_28"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button__clickable_shape"
+                android:gravity="center"
+                android:id="@+id/btn_delete"
+                android:layout_width="@dimen/px_160"
+                android:layout_height="@dimen/px_66"
+                android:layout_marginRight="@dimen/px_30"
+                android:layout_alignParentRight="true"
+                android:text="删除" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/select_all"
+                android:layout_marginRight="@dimen/px_30"
+                android:background="@drawable/bg_selete_all"
+                android:layout_toLeftOf="@+id/btn_delete"
+                android:layout_width="@dimen/px_160"
+                android:layout_height="@dimen/px_66"
+                android:text="全选"
+                android:gravity="center"
+                android:textColor="#000001"
+                android:textSize="@dimen/px_28"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

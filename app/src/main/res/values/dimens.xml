@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="px_90" />
+    <dimen name="px_28" />
+    <dimen name="px_30" />
+    <dimen name="px_18" />
+    <dimen name="px_160" />
+    <dimen name="px_66" />
+    <dimen name="px_24" />
+</resources>
