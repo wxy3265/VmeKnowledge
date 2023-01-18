@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val knowledgeList = ArrayList<Knowledge>()
     @RequiresApi(Build.VERSION_CODES.M)
     private val tagSet = ArraySet<String>()
-    private val reviewInterval = intArrayOf(0, 1, 2, 4, 7, 15, 30, 90, 180)
+    private val reviewInterval = intArrayOf(0 , 1, 2, 4, 7, 15, 30, 90, 180)
     private val TAG = "MainActivity"
     private var remainToReview = 0
     private val tagList = ArrayList<String>()
@@ -154,3 +154,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+
