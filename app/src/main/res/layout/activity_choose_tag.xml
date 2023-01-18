@@ -16,39 +16,38 @@
         android:text="选择该文章的标签"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <LinearLayout
+        android:id="@+id/ChooseAddNew"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="80dp"
-        android:gravity="center"
-        >
+        android:gravity="center">
         <EditText
-            android:id="@+id/newtagname"
+            android:id="@+id/ChooseAddEditor"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="添加新标签"
-            />
+            android:hint="添加新标签" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="添加标签"
-            />
+            android:id="@+id/ChooseAddButton"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="150dp">
-        <CheckBox android:id="@+id/checkbox_cheese"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:textSize="20sp"
-            android:text="  若干标签"
-            android:onClick="onCheckboxClicked"/>
+
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ChooseRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ChooseAddNew"
+        android:layout_above="@id/confirm_button" />
     <Button
-        android:id="@+id/confirm_button"
+        android:id="@+id/ChooseTagAdd"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -56,10 +55,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="确定"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
     <Button
-        android:id="@+id/cancel_button"
+        android:id="@+id/ChooseTagCancel"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -67,7 +65,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:text="取消"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
 </RelativeLayout>

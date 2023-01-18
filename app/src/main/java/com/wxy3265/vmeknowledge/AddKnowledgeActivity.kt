@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -20,12 +21,14 @@ import java.util.Date
 
 class AddKnowledgeActivity : AppCompatActivity() {
     private var TAG: String = "AddKnowledgeActivity"
-    val takePhoto = 1
-    val fromAlbum = 2
-    val fromAudio = 3
-    val fromVideo = 4
-    lateinit var imageUri: Uri
-    lateinit var outputImage:File
+    private val takePhoto = 1
+    private val fromAlbum = 2
+    private val fromAudio = 3
+    private val fromVideo = 4
+    private val forTag = 5
+    private var tags = ""
+    private lateinit var imageUri: Uri
+    private lateinit var outputImage:File
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_knowledge)
@@ -38,10 +41,11 @@ class AddKnowledgeActivity : AppCompatActivity() {
         AddEditor.setPlaceholder("在这里输入...")
         AddEditor.focusEditor()
 
-        val AddTagButton: Button = findViewById(R.id.AddTag)
+
+
         AddTagButton.setOnClickListener {
             val ZhuanAddTag = Intent(this, ChooseTagActivity::class.java)
-            startActivity(ZhuanAddTag)
+            startActivityForResult(ZhuanAddTag, forTag)
         }
         AddButtonAdd.setOnClickListener {
             if (AddEditor.html != null) {
@@ -56,7 +60,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 put("createdate",date)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
-//                put("tag", AddEditTag.text.toString())
+                put("tag", tags)
             }
                 db.insert("Knowledge", null, value)
                 Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
@@ -184,6 +188,13 @@ class AddKnowledgeActivity : AppCompatActivity() {
                     data.data?.let { uri ->
                         AddEditor.insertVideo( uri.toString() , 320)
                     }
+                }
+            }
+            forTag -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val returnedData = data?.getStringExtra("tag_return")
+                    Log.d("tagtest", "onActivityResult: " + returnedData)
+                    if (returnedData != "" && returnedData != "null") tags = returnedData.toString()
                 }
             }
         }

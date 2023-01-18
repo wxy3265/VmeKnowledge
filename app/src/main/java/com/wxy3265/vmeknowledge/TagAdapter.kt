@@ -13,8 +13,8 @@ class TagAdapter (val tagList: List<String>):RecyclerView.Adapter<TagAdapter.Vie
 
     private val TAG = "TagAdapter"
 
-    inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
-        val tagName:TextView=view.findViewById(R.id.tagname)
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val tagName: TextView = view.findViewById(R.id.tagname)
     }
 
     interface OnItemClickListener {
