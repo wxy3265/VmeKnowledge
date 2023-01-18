@@ -24,5 +24,5 @@ class Tag(var orstr: String?, var tSet: MutableSet<String>?) {
         orstr = orstr?.replace(delim + str, "", ignoreCase = true)
         tSet?.removeIf{ it == str }
     }
-    fun checkTag(str: String): Boolean = tSet?.indexOf(str) != -1
+    fun checkTag(str: String): Boolean = orstr?.indexOf(str) != -1 && orstr?.indexOf(str) != null
 }

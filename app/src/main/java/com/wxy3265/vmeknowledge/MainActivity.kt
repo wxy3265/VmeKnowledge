@@ -27,15 +27,13 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private var remainToReview = 0
     private val tagList = ArrayList<String>()
-     val chosenTag = Tag()
+    val chosenTag = Tag()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(MainToolbar)
-
-        Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 3600000)
 
         MainStudy.setOnClickListener {
             val intent = Intent(this, StudyActivity::class.java)
@@ -47,21 +45,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             true
         }
-
-        initKnowledges()
-        val layoutManager = GridLayoutManager(this, 2)
-        MainCardRecyclerview.layoutManager = layoutManager
-        val adapter = KnowledgeAdapter(this, knowledgeList)
-        MainCardRecyclerview.adapter = adapter
-        val layoutManager2=LinearLayoutManager(this)
-        layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
-        MainTagRecyclerView.layoutManager=layoutManager2
-        tagList.clear()
-        for (tag in tagSet) {
-            tagList.add(tag)
-        }
-        val adapter2=TagAdapter(tagList)
-        MainTagRecyclerView.adapter=adapter2
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -80,10 +63,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         initKnowledges()
-        val layoutManager = GridLayoutManager(this, 2)
-        MainCardRecyclerview.layoutManager = layoutManager
-        val adapter = KnowledgeAdapter(this, knowledgeList)
-        MainCardRecyclerview.adapter = adapter
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
         MainTagRecyclerView.layoutManager=layoutManager2
@@ -91,8 +70,26 @@ class MainActivity : AppCompatActivity() {
         for (tag in tagSet) {
             tagList.add(tag)
         }
-        val adapter2=TagAdapter(tagList)
-        MainTagRecyclerView.adapter=adapter2
+        val tagAdapter = TagAdapter(tagList)
+        tagAdapter.setOnItemClickListener(object :TagAdapter.OnItemClickListener{
+            var selected:Boolean = false
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onItemClick(position: Int) {
+                val tag = tagList[position]
+                if (chosenTag.checkTag(tag)) {
+                    chosenTag.removeTag(tag)
+                    selected = false
+                } else {
+                    chosenTag.addTag(tag)
+                    selected = true
+                }
+                initKnowledges()
+            }
+            override fun getSelect(): Boolean {
+                return selected
+            }
+        })
+        MainTagRecyclerView.adapter = tagAdapter
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -107,7 +104,6 @@ class MainActivity : AppCompatActivity() {
         remainToReview = 0
         if (cursor.moveToFirst()) {
             do {
-                Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
                 val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
@@ -116,10 +112,11 @@ class MainActivity : AppCompatActivity() {
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 val ktag = Tag(tag)
+                var showable = true
                 if (ktag.orstr != "") {
-                    Log.d(TAG, "initKnowledges: orstr:" + ktag.orstr)
                     for (str in ktag.tSet!!) {
                         tagSet.add(str)
+                        if (chosenTag.checkTag(str)) showable = false
                     }
                 }
                 if(studyTimes == -1)continue
@@ -128,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                         remainToReview++
                     }
                 }
-                knowledgeList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
+                if (showable) knowledgeList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -141,15 +138,15 @@ class MainActivity : AppCompatActivity() {
             MainStudy.setBackgroundColor(Color.GRAY)
             MainStudy.isClickable = false
         }
+        val layoutManager = GridLayoutManager(this, 2)
+        MainCardRecyclerview.layoutManager = layoutManager
+        val adapter = KnowledgeAdapter(this, knowledgeList)
+        MainCardRecyclerview.adapter = adapter
     }
 
     private fun startAdd() {
         val intent = Intent(this, AddKnowledgeActivity::class.java)
         startActivity(intent)
-    }
-
-    fun addChosenTag(tag: String) {
-        chosenTag.addTag(tag)
     }
 
 }
