@@ -43,14 +43,14 @@ class StudyActivity : AppCompatActivity() {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 if(studyTimes == -1) continue
                 if (studyTimes <= 8) {
                     Log.d(TAG, "onCreate: " + System.currentTimeMillis() / 1000 + "-" + milliTime
                             + "=" + (System.currentTimeMillis() / 1000 - milliTime)
                             + ">" + reviewInterval.get(studyTimes) * 86400)
                     if (System.currentTimeMillis() / 1000 - milliTime > reviewInterval[studyTimes] * 86400) {
-
-                        reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
+                        reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime, tag))
                     }
                 }
             } while (cursor.moveToNext())
@@ -73,6 +73,7 @@ class StudyActivity : AppCompatActivity() {
                 put("content", reviewList[currentKnowledge].Content)
                 put("studytimes", reviewList[currentKnowledge].StudyTimes + 1)
                 put("createdate",reviewList[currentKnowledge].CreateDate)
+                put("tag", reviewList[currentKnowledge].tag)
                 put("reviewdate", date)
                 put("milliTime", System.currentTimeMillis() / 1000)
             }

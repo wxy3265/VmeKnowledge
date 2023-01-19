@@ -47,7 +47,7 @@ class StudyTagActivity : AppCompatActivity() {
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 val ktag = Tag(tag)
                 if (extraData?.let { ktag.checkTag(it) } == true) {
-                    reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
+                    reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime, tag))
                 }
             } while (cursor.moveToNext())
             cursor.close()
