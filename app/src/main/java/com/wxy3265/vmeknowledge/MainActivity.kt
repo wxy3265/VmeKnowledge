@@ -63,10 +63,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         initKnowledges()
-        val layoutManager = GridLayoutManager(this, 2)
-        MainCardRecyclerview.layoutManager = layoutManager
-        val adapter = KnowledgeAdapter(this, knowledgeList)
-        MainCardRecyclerview.adapter = adapter
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
         MainTagRecyclerView.layoutManager=layoutManager2
@@ -116,23 +112,26 @@ class MainActivity : AppCompatActivity() {
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 var ktag = Tag()
-                var showable = true
+                var showable = false
                 if (tag != null) ktag = Tag(tag)
                 if (ktag.orstr != "") {
                     for (str in ktag.tSet!!) {
                         if (str != "") {
                             tagSet.add(str)
-                            if (!chosenTag.checkTag(str) && chosenTag.orstr != "") showable = false
+                            Log.d(TAG, "initKnowledges: Knowledge: " + content + " tag:" + str + " check: " + chosenTag.checkTag(str) + "orstr: " + chosenTag.orstr)
+                            if (chosenTag.checkTag(str)) {
+                                showable = true
+                            }
                         }
                     }
                 }
-                if(studyTimes == -1)continue
+                if (studyTimes == -1) continue
                 if (studyTimes <= 8) {
                     if (System.currentTimeMillis() / 1000 - milliTime > reviewInterval[studyTimes] * 86400) {
                         remainToReview++
                     }
                 }
-                if (showable) knowledgeList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime))
+                if (showable || chosenTag.orstr == "") knowledgeList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime, tag))
 
             } while (cursor.moveToNext())
             cursor.close()
@@ -146,6 +145,10 @@ class MainActivity : AppCompatActivity() {
             MainStudy.setBackgroundColor(Color.GRAY)
             MainStudy.isClickable = false
         }
+        val layoutManager = GridLayoutManager(this, 2)
+        MainCardRecyclerview.layoutManager = layoutManager
+        val adapter = KnowledgeAdapter(this, knowledgeList)
+        MainCardRecyclerview.adapter = adapter
     }
 
     private fun startAdd() {
