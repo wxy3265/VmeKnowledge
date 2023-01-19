@@ -12,13 +12,14 @@ import android.util.ArraySet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private val knowledgeList = ArrayList<Knowledge>()
     @RequiresApi(Build.VERSION_CODES.M)
@@ -28,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private var remainToReview = 0
     private val tagList = ArrayList<String>()
     val chosenTag = Tag()
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, StudyActivity::class.java)
             startActivity(intent)
         }
+
         MainStudy.setOnLongClickListener {
             if (chosenTag.orstr == "") {
                 Toast.makeText(this, "未选中标签", Toast.LENGTH_SHORT)

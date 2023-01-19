@@ -10,4 +10,7 @@
     <color name="red">#DC0000</color>
     <color name="green">#74AE01</color>
     <color name="deep_gray">#858585</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>
