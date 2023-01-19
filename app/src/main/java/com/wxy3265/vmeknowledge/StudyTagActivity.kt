@@ -16,7 +16,6 @@ import kotlin.collections.ArrayList
 
 class StudyTagActivity : AppCompatActivity() {
     private val TAG = "StTagActivity"
-
     private val reviewList = ArrayList<Knowledge>()
     private var currentKnowledge = 0
 
@@ -26,7 +25,7 @@ class StudyTagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_study_tag)
         supportActionBar?.hide()
 
-        val extraData = intent.getStringExtra("TAG")
+        val extraData = intent.getStringExtra("ChosenTag")
         if (extraData == null) {
             Toast.makeText(this, "打开错误", Toast.LENGTH_SHORT).show()
         }
@@ -37,7 +36,6 @@ class StudyTagActivity : AppCompatActivity() {
             null, null, null)
         if (cursor.moveToFirst()) {
             do {
-                Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
                 val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
@@ -45,13 +43,15 @@ class StudyTagActivity : AppCompatActivity() {
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
                 val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
+                Log.d(TAG, "onCreate: knowledge: " + content)
                 val ktag = Tag(tag)
-                if (extraData?.let { ktag.checkTag(it) } == true) {
+                if (extraData?.let { ktag.checkTag(it) } == true && studyTimes != -1) {
                     reviewList.add(Knowledge(content, createdate, reviewdate, id, studyTimes, milliTime, tag))
                 }
             } while (cursor.moveToNext())
             cursor.close()
         }
+        Log.d(TAG, "onCreate: over")
         if (reviewList.size > 0) showContent(reviewList[currentKnowledge].Content)
         else {
             Toast.makeText(this, "无可复习知识", Toast.LENGTH_SHORT).show()
@@ -66,7 +66,7 @@ class StudyTagActivity : AppCompatActivity() {
             }
             else showContent(reviewList[currentKnowledge].Content)
         }
-        StudyButtonForget.setOnClickListener {
+        StudyTagButtonForget.setOnClickListener {
             reviewList.add(reviewList[currentKnowledge])
             currentKnowledge++
             if (currentKnowledge >= reviewList.size) {
@@ -80,9 +80,9 @@ class StudyTagActivity : AppCompatActivity() {
 
     private fun showContent(Content: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StudyViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
+            StudyTagViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
         } else {
-            StudyViewer.setText(Html.fromHtml(Content))
+            StudyTagViewer.setText(Html.fromHtml(Content))
         }
     }
 }

@@ -40,9 +40,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         MainStudy.setOnLongClickListener {
-
-            val intent = Intent(this, StudyActivity::class.java)
-            startActivity(intent)
+            if (chosenTag.orstr == "") {
+                Toast.makeText(this, "未选中标签", Toast.LENGTH_SHORT)
+            } else {
+                val intent = Intent(this, StudyTagActivity::class.java)
+                intent.putExtra("ChosenTag", chosenTag.orstr)
+                startActivity(intent)
+            }
             true
         }
     }
@@ -62,6 +66,9 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onResume() {
         super.onResume()
+        for (tag in tagSet) {
+            if (chosenTag.checkTag(tag)) chosenTag.removeTag(tag)
+        }
         initKnowledges()
         val layoutManager2=LinearLayoutManager(this)
         layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
@@ -69,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         tagList.clear()
         for (tag in tagSet) {
             tagList.add(tag)
+            if (chosenTag.checkTag(tag)) chosenTag.removeTag(tag)
         }
         val tagAdapter = TagAdapter(tagList)
         tagAdapter.setOnItemClickListener(object :TagAdapter.OnItemClickListener{
@@ -118,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                     for (str in ktag.tSet!!) {
                         if (str != "") {
                             tagSet.add(str)
-                            Log.d(TAG, "initKnowledges: Knowledge: " + content + " tag:" + str + " check: " + chosenTag.checkTag(str) + "orstr: " + chosenTag.orstr)
                             if (chosenTag.checkTag(str)) {
                                 showable = true
                             }

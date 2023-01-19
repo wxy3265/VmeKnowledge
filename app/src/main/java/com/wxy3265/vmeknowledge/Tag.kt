@@ -25,4 +25,12 @@ class Tag(var orstr: String?, var tSet: MutableSet<String>?) {
         tSet?.removeIf{ it == str }
     }
     fun checkTag(str: String): Boolean = orstr?.indexOf(str) != -1 && orstr?.indexOf(str) != null
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun clear() {
+        for (str in tSet!!) {
+            removeTag(str)
+        }
+        orstr = ""
+    }
 }
