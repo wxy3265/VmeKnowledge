@@ -19,10 +19,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import android.content.Context
+import android.util.ArraySet
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_inspect_knowledge.*
 
 
 class InspectKnowledgeActivity : AppCompatActivity() {
 
+    private val tagList = ArrayList<String>()
+
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +48,7 @@ class InspectKnowledgeActivity : AppCompatActivity() {
                 val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
+                val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 if(studyTimes == -1)continue
                 ID = id
                 showInspectContent(content)
@@ -56,7 +64,13 @@ class InspectKnowledgeActivity : AppCompatActivity() {
                         outText = outText + reviewdate + "第" + timeth.toString() + "次学习\n"
                     }while (Recursor.moveToNext())
                     Recursor.close()
-                    outText =outText + createdate+ "创建,复习" +studyTimes.toString()+ "次"
+                    val kTag = Tag(tag)
+                    val tSet = ArraySet<String>()
+                    for (str in kTag.tSet!!) {
+                        if (str != "") tSet.add(str)
+                    }
+                    showTag(tSet)
+                    outText = outText + createdate+ "创建,复习" +studyTimes.toString() + "次"
                     showReviewContent(outText)
                 }
             } while (cursor.moveToNext())
@@ -70,6 +84,12 @@ class InspectKnowledgeActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        InspectButtonDelete.setOnClickListener {
+            db.delete("Knowledge", "id = ?", arrayOf(extraData.toString()))
+            Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
     private fun showInspectContent(Content: String) {
@@ -81,10 +101,22 @@ class InspectKnowledgeActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun showTag(tagSet: ArraySet<String>) {
+        val layoutManager= LinearLayoutManager(this)
+        layoutManager.orientation= LinearLayoutManager.HORIZONTAL
+       InspectRecyclerView.layoutManager = layoutManager
+        tagList.clear()
+        for (tag in tagSet) {
+            tagList.add(tag)
+        }
+        val tagAdapter = TagAdapter(tagList)
+        InspectRecyclerView.adapter = tagAdapter
+    }
+
     private fun showReviewContent(Content: String) {
         val ReviewViewer = findViewById<TextView>(R.id.ReviewViewer)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //Content = Content.replace("\\n","\n")
             ReviewViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
         } else {
             ReviewViewer.setText(Html.fromHtml(Content))
