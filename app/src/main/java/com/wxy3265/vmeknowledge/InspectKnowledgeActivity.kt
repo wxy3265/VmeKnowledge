@@ -83,6 +83,8 @@ class InspectKnowledgeActivity : AppCompatActivity() {
             intent.putExtra("ID", ID)
             startActivity(intent)
             finish()
+
+
         }
 
         InspectButtonDelete.setOnClickListener {
