@@ -16,6 +16,13 @@
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
         <activity
+            android:name=".Duoxuan"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ChooseTagActivity"
             android:exported="false"
             android:label="@string/title_activity_choose_tag">
