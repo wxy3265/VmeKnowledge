@@ -63,6 +63,7 @@ class StudyActivity : AppCompatActivity() {
         }
 
         StudyButtonRemember.setOnClickListener {
+
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
@@ -81,6 +82,7 @@ class StudyActivity : AppCompatActivity() {
                 arrayOf(reviewList[currentKnowledge].Id.toString()))
             db.insert("Knowledge",null, value)
             currentKnowledge++
+
             if (currentKnowledge >= reviewList.size) {
                 Toast.makeText(this, "复习完成", Toast.LENGTH_SHORT).show()
                 finish()
@@ -97,6 +99,7 @@ class StudyActivity : AppCompatActivity() {
             else showContent(reviewList[currentKnowledge].Content)
         }
 
+        app.setText(""+currentKnowledge+"/"+ reviewList.size+"")
     }
 
     private fun showContent(Content: String) {
