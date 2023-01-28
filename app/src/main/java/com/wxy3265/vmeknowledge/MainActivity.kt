@@ -2,12 +2,9 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.util.ArraySet
 import android.util.Log
 import android.view.Menu
@@ -15,12 +12,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.knowledge_item.*
 
 class MainActivity : AppCompatActivity(){
-
     private val knowledgeList = ArrayList<Knowledge>()
     @RequiresApi(Build.VERSION_CODES.M)
     private val tagSet = ArraySet<String>()
