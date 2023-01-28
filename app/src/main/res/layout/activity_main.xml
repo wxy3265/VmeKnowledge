@@ -22,18 +22,20 @@
         android:layout_width="match_parent"
         android:layout_weight="93"
         android:layout_height="0dp" />
+
     <Button
         android:id="@+id/MainStudy"
-        android:layout_margin="10dp"
-        android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="8"
         android:background="@color/purple_500"
+        android:text="开始学习"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="开始学习"/>
+        android:textSize="20sp" />
+    <include layout="@layout/menu" />
 
-<!--    <com.landicorp.dependencelibrary.widget.TabView-->
+    <!--    <com.landicorp.dependencelibrary.widget.TabView-->
 <!--        android:id="@+id/tab_delete"-->
 <!--        android:layout_width="40dp"-->
 <!--        android:layout_height="wrap_content"-->

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.knowledge_item.*
+import kotlinx.android.synthetic.main.menu.*
 
 class MainActivity : AppCompatActivity(){
     private val knowledgeList = ArrayList<Knowledge>()
@@ -29,6 +30,10 @@ class MainActivity : AppCompatActivity(){
     val chosenTag = Tag()
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
+        menudate.setOnClickListener {
+            val intent_date = Intent(this , richengguanlimainactivity::class.java)
+            startActivity(intent_date)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(MainToolbar)
@@ -161,6 +166,7 @@ class MainActivity : AppCompatActivity(){
         val intent = Intent(this, AddKnowledgeActivity::class.java)
         startActivity(intent)
     }
+
 
 }
 

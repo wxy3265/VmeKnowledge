@@ -16,6 +16,13 @@
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
         <activity
+            android:name=".richengguanlimainactivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Duoxuan2"
             android:exported="false">
             <meta-data
