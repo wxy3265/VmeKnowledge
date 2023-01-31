@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.wxy3265.vmeknowledge.MainActivity
 
+
 class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>) :
             RecyclerView.Adapter<KnowledgeAdapter.ViewHolder>(){
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

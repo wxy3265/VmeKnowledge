@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_inspect_knowledge.*
 
 
+
 class InspectKnowledgeActivity : AppCompatActivity() {
 
     private val tagList = ArrayList<String>()

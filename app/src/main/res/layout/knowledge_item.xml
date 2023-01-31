@@ -8,6 +8,7 @@
     app:cardCornerRadius="10dp"
     android:focusable="true">
 
+
     <LinearLayout
         android:id="@+id/Card"
         android:orientation="vertical"

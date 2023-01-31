@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity(){
         MainTagRecyclerView.adapter = tagAdapter
     }
 
+
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("Range")
     private fun initKnowledges() {
