@@ -22,6 +22,11 @@ class richengguanlimainactivity : AppCompatActivity() {
             startActivity(intent_main)
         }
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         init_richeng()
         val layoutManager = GridLayoutManager(this , 1)
         richengguanliRecyclerview.layoutManager = layoutManager
@@ -47,6 +52,17 @@ class richengguanlimainactivity : AppCompatActivity() {
         startActivity(intentstartAdd)
     }
     private  fun init_richeng(){
+        val dbHelper = richengDatabaseHelper(this , "richeng.db", 1 )
+        val db = dbHelper.writableDatabase
+        val cursor = db.query("richeng" , null , null , null , null , null , null ,)
+        if(cursor.moveToFirst()){
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
+                val content = cursor.getString(cursor.getColumnIndex("content"))
+                val time = cursor.getString(cursor.getColumnIndex("time"))
+            }while (cursor.moveToNext())
+        }
+        cursor.close()
 
     }
 }

@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("Range")
     private fun initKnowledges() {
+
         tagSet.clear()
         knowledgeList.clear()
         val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
