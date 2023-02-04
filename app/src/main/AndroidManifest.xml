@@ -16,21 +16,21 @@
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
         <activity
-            android:name=".richengchakan"
+            android:name=".InspectScheduleKnowledge"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".richengtianjia"
+            android:name=".AddScheduleActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".richengguanlimainactivity"
+            android:name=".ManageScheduleActivity"
             android:exported="false"
             android:label="日程管理">
             <meta-data
@@ -128,7 +128,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ManageKnowledgeActivity"
             android:exported="true"
             android:label="知识库">
             <intent-filter>

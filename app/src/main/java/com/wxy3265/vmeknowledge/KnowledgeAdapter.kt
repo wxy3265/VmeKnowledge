@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.wxy3265.vmeknowledge.MainActivity
 
 
 class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>) :
