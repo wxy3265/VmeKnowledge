@@ -2,23 +2,19 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
-import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_edit_knowledge.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_study.*
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import android.content.Context
 import android.util.ArraySet
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager

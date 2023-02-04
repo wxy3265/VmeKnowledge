@@ -128,7 +128,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ManageKnowledgeActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="知识库">
             <intent-filter>

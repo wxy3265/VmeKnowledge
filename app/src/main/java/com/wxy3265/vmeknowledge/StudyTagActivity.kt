@@ -1,17 +1,13 @@
 package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_study.*
 import kotlinx.android.synthetic.main.activity_study_tag.*
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class StudyTagActivity : AppCompatActivity() {

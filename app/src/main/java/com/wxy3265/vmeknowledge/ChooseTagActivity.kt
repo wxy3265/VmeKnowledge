@@ -10,7 +10,6 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_choose_tag.*
-import java.util.Objects
 
 class ChooseTagActivity : AppCompatActivity() {
 

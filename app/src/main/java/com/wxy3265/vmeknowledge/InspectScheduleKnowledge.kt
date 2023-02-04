@@ -6,6 +6,6 @@ import android.os.Bundle
 class InspectScheduleKnowledge : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_richengchakan)
+        setContentView(R.layout.activity_inspect_schedule)
     }
 }

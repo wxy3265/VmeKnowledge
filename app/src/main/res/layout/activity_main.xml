@@ -33,16 +33,6 @@
         android:text="开始学习"
         android:textColor="@color/white"
         android:textSize="20sp" />
-    <include layout="@layout/menu" />
-
-    <!--    <com.landicorp.dependencelibrary.widget.TabView-->
-<!--        android:id="@+id/tab_delete"-->
-<!--        android:layout_width="40dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingBottom="16dp"-->
-<!--        app:color="@color/red"-->
-<!--        app:text="删除"-->
-<!--        app:text_size="12sp"/>-->
+    <include layout="@layout/bottom_menu" />
 
 </LinearLayout>
-

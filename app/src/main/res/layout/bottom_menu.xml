@@ -1,23 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/deep_gray">
+    android:background="@color/white">
     <Button
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/menumain"
+        android:id="@+id/menuKnowledge"
         android:layout_margin="5dp"
         android:gravity="center"
         android:text="知识库"
-        android:textColor="#FF000000" />
+        android:background="@drawable/borderline_purple"
+        android:textColor="@color/black" />
     <Button
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/menudate"
+        android:id="@+id/menuDate"
         android:layout_margin="5dp"
         android:gravity="center"
+        android:background="@drawable/borderline"
         android:text="日程管理"
-        android:textColor="#FF000000" />
+        android:textColor="@color/black" />
 </LinearLayout>

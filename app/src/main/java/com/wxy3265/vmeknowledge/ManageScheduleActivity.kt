@@ -6,21 +6,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_richengguanlimainactivity.*
-import kotlinx.android.synthetic.main.menu.*
+import kotlinx.android.synthetic.main.activity_manage_schedule.*
 
 class ManageScheduleActivity : AppCompatActivity() {
-    val richengList = ArrayList<ScheduleCard>()
+    val richengList = ArrayList<Schedule>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_richengguanlimainactivity)
+        setContentView(R.layout.activity_manage_schedule)
         setSupportActionBar(richengguanliToolbar)
 
-        menumain.setOnClickListener {
+        /*menumain.setOnClickListener {
             val intent_main = Intent(this , ManageKnowledgeActivity::class.java)
             startActivity(intent_main)
-        }
+        }*/
 
 
     }
@@ -52,9 +51,9 @@ class ManageScheduleActivity : AppCompatActivity() {
         startActivity(intentstartAdd)
     }
     private  fun init_richeng(){
-        val dbHelper = ScheduleDatabaseHelper(this , "richeng.db", 1 )
+        val dbHelper = MyDatabaseHelper(this , "Knowledge.db", 1 )
         val db = dbHelper.writableDatabase
-        val cursor = db.query("richeng" , null , null , null , null , null , null ,)
+        val cursor = db.query("Schedule" , null , null , null , null , null , null ,)
         if(cursor.moveToFirst()){
             do {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))

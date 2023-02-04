@@ -8,8 +8,6 @@ import android.text.Html
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_add_knowledge.*
-import kotlinx.android.synthetic.main.activity_edit_knowledge.*
 import kotlinx.android.synthetic.main.activity_study.*
 import java.text.SimpleDateFormat
 import java.util.*

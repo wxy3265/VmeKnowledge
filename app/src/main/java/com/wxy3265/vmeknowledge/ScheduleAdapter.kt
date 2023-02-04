@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ScheduleAdapter(val context: Context, val richengList: List<ScheduleCard>):
+class ScheduleAdapter(val context: Context, val richengList: List<Schedule>):
     RecyclerView.Adapter<ScheduleAdapter.ViewHolder>(){
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val richengContent: TextView = view.findViewById(R.id.richengguanliContent)
@@ -18,7 +18,7 @@ class ScheduleAdapter(val context: Context, val richengList: List<ScheduleCard>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.richengguanli_card,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.schedule_card,parent,false)
         val viewHolder = ViewHolder(view)
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
@@ -32,7 +32,6 @@ class ScheduleAdapter(val context: Context, val richengList: List<ScheduleCard>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val richeng = richengList[position]
-        holder.richengDate.text = richeng.time
         holder.richengContent.text = richeng.content
 
     }
