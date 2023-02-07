@@ -16,7 +16,7 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int):
                               "studytimes integer," +
                               "milliTime integer," +
                               "reviewdate text)"
-    private val createScheduleList = "create table schedule (" +
+    private val createScheduleList = "create table Schedule (" +
             " id integer primary key autoincrement," +
             "content text," +
             "startTime text," +

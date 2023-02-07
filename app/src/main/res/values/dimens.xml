@@ -7,4 +7,5 @@
     <dimen name="px_160" />
     <dimen name="px_66" />
     <dimen name="px_24" />
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
