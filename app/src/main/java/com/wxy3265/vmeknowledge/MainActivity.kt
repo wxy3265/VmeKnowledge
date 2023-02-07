@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity(){
     @SuppressLint("Range")
     private  fun initSchedule() {
         scheduleList.clear()
-        val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1 )
+        val dbHelper = MyDatabaseHelper(this, "Schedule.db", 1 )
         val db = dbHelper.writableDatabase
         val cursor = db.query("Schedule", null, null, null, null, null, null)
         if(cursor.moveToFirst()) {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    tools:context=".ChooseDateActivity">
+
+    <!-- view for AdMob Interstitial Ad -->
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="设置八位起止日期"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:id="@+id/ChooseAddNew"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/ChooseAddEditor"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="八位起始日期" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加日期"
+            android:id="@+id/ChooseAddButton"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp">
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ChooseRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ChooseAddNew"
+        android:layout_above="@id/confirm_button" />
+    <Button
+        android:id="@+id/ChooseTagAdd"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_200"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="确定"
+        android:textSize="20dp" />
+    <Button
+        android:id="@+id/ChooseTagCancel"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="取消"
+        android:textSize="20dp" />
+
+</RelativeLayout>
