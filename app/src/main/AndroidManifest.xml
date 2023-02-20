@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".InspectScheduleKnowledge"
+            android:name=".InspectScheduleActively"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

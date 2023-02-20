@@ -23,8 +23,8 @@ class ScheduleAdapter(val context: Context, val richengList: List<Schedule>):
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
             val richeng = richengList[position]
-            val intent = Intent(context , InspectScheduleKnowledge::class.java)
-            intent.putExtra("richengID", richeng.id)
+            val intent = Intent(context , InspectScheduleActively::class.java)
+            intent.putExtra("ID", richeng.id)
             parent.context.startActivity(intent)
         }
         return viewHolder
