@@ -195,11 +195,13 @@ class MainActivity : AppCompatActivity(){
                 val endMilliTime = cursor.getInt(cursor.getColumnIndex("endMilliTime"))
                 val s_notification = cursor.getString(cursor.getColumnIndex("notification"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
+                Log.d(TAG, "initSchedule: stop1")
                 scheduleList.add(Schedule(content, id, startTime, endTime, startMilliTime, endMilliTime, s_notification, tag))
+                Log.d(TAG, "initSchedule: stop2")
             } while (cursor.moveToNext())
         }
         cursor.close()
-        val layoutManager = GridLayoutManager(this, 2)
+        val layoutManager = GridLayoutManager(this, 1)
         MainCardRecyclerview.layoutManager = layoutManager
         val adapter = ScheduleAdapter(this, scheduleList)
         MainCardRecyclerview.adapter = adapter
@@ -233,5 +235,3 @@ class MainActivity : AppCompatActivity(){
     }
 
 }
-
-

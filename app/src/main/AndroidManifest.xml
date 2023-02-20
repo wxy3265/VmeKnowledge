@@ -145,7 +145,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="知识库">
+            android:label="威我知识">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

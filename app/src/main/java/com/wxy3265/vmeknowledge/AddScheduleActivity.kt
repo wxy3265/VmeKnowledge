@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
 import kotlinx.android.synthetic.main.activity_add_knowledge.AddButtonAdd
 import kotlinx.android.synthetic.main.activity_add_knowledge.AddButtonDelete
@@ -61,6 +62,8 @@ class AddScheduleActivity : AppCompatActivity() {
     private val fromVideo = 4
     private val forTag = 5
     private var tags = ""
+    private var startMilliTime = System.currentTimeMillis()
+    private var endMilliTime = System.currentTimeMillis()
     private lateinit var imageUri: Uri
     private lateinit var outputImage:File
     var et_startdate: EditText? = null
@@ -83,19 +86,34 @@ class AddScheduleActivity : AppCompatActivity() {
             startActivityForResult(ZhuanAddTag, forTag)
         }
         AddTimeButton.setOnClickListener {
-            val AddTimeTag = Intent(this, ChooseDateActivity::class.java)
-            startActivityForResult(AddTimeTag, forTag)
+            //val AddTimeTag = Intent(this, ChooseDateActivity::class.java)
+            //startActivityForResult(AddTimeTag, forTag)
+            //kotlin
+            CardDatePickerDialog.builder(this)
+                .setTitle("设置开始时间")
+                .showBackNow(false)
+                .setThemeColor(Color.rgb(98, 0, 238))
+                .setOnChoose {
+                    startMilliTime = it
+                    endMilliTime = it
+                }.build().show()
         }
         AddButtonAdd.setOnClickListener {
             if (AddEditor.html != null) {
                 val dbHelper = MyDatabaseHelper(this, "Schedule.db", 1)
                 val db = dbHelper.writableDatabase
                 val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
-                val curDate = Date(System.currentTimeMillis())
-                val date: String = formatter.format(curDate)
+                val startTime: String = formatter.format(startMilliTime)
+                val endTime: String = formatter.format(endMilliTime)
+                val s_notification = "true"
                 val value = ContentValues().apply {
                     put("content", AddEditor.html)
                     put("tag", tags)
+                    put("startTime", startTime)
+                    put("endTime", endTime)
+                    put("startMilliTime", startMilliTime / 1000)
+                    put("endMilliTime", endMilliTime / 1000)
+                    put("notification", s_notification)
                 }
                 db.insert("Schedule", null, value)
                 Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show()
