@@ -20,13 +20,17 @@
         android:layout_margin="15dp"
         android:background="@drawable/borderline">
 
-        <TextView
-            android:id="@+id/InspectscheduleViewer"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="0dp"
-            android:layout_margin="10dp"
-            android:textSize="22sp" />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/InspectScheduleViewer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="0dp"
+                android:layout_margin="10dp"
+                android:textSize="22sp" />
+        </ScrollView>
 
     </LinearLayout>
 

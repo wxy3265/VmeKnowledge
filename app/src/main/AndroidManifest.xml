@@ -16,21 +16,6 @@
         android:theme="@style/Theme.VmeKnowledge"
         tools:targetApi="31">
         <activity
-            android:name=".ChooseDateActivity"
-            android:exported="false"
-            android:label="@string/title_activity_choose_date"
-            android:theme="@style/Theme.VmeKnowledge.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".InspectScheduleActively"
             android:exported="false">
             <meta-data
@@ -48,34 +33,6 @@
             android:name=".ManageScheduleActivity"
             android:exported="false"
             android:label="日程管理">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Duoxuan2"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Shurukuang"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".RotateZoomImageView"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Duoxuan"
-            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

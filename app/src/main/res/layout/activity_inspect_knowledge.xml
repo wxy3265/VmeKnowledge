@@ -19,15 +19,17 @@
         android:layout_weight="50"
         android:layout_margin="15dp"
         android:background="@drawable/borderline">
-
-        <TextView
-            android:id="@+id/InspectViewer"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="0dp"
-            android:layout_margin="10dp"
-            android:textSize="22sp" />
-
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/InspectViewer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="0dp"
+                android:textSize="22sp" />
+        </ScrollView>
     </LinearLayout>
 
     <TextView
@@ -45,12 +47,16 @@
         android:background="@drawable/borderline"
         android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/ReviewViewer"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:textSize="22sp" />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ReviewViewer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:textSize="22sp" />
+        </ScrollView>
 
     </LinearLayout>
 

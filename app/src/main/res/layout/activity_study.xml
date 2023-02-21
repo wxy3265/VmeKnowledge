@@ -23,12 +23,16 @@
         android:layout_weight="85"
         android:background="@drawable/borderline">
 
-        <TextView
-            android:id="@+id/StudyViewer"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="5dp"
-            android:textSize="22sp" />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/StudyViewer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:textSize="22sp" />
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout

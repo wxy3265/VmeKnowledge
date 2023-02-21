@@ -76,7 +76,7 @@ class InspectScheduleActively : AppCompatActivity() {
         }
         cursor.close()
         Log.d(TAG, "onCreate: 3")
-        val InspectViewer = findViewById<TextView>(R.id.InspectscheduleViewer)
+        val InspectViewer = findViewById<TextView>(R.id.InspectScheduleViewer)
         InspectViewer.setOnClickListener {
             val intent = Intent(this, EditScheduleActivity::class.java)
             intent.putExtra("ID", ID)
@@ -96,9 +96,9 @@ class InspectScheduleActively : AppCompatActivity() {
     private val TAG1 = "InspectScheduleActively"
     private fun showInspectContent(Content: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            InspectViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
+            InspectScheduleViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
         } else {
-            InspectViewer.setText(Html.fromHtml(Content))
+            InspectScheduleViewer.setText(Html.fromHtml(Content))
         }
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this))
         val options = DisplayImageOptions.Builder()
@@ -111,8 +111,8 @@ class InspectScheduleActively : AppCompatActivity() {
             .bitmapConfig(Bitmap.Config.RGB_565)
             .displayer(FadeInBitmapDisplayer(300))
             .build()
-        InspectViewer.text = Html.fromHtml(Content,
-            URLImageGetter(Content, this, InspectViewer, options),
+        InspectScheduleViewer.text = Html.fromHtml(Content,
+            URLImageGetter(Content, this, InspectScheduleViewer, options),
             null)
     }
 
