@@ -1,5 +1,6 @@
 package com.wxy3265.vmeknowledge
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -53,6 +54,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
+                Log.d("InspectKnowledge", "onCreate: Add:" + AddEditor.html)
             val value = ContentValues().apply {
                 put("content", AddEditor.html)
                 put("studytimes", 0)
@@ -168,6 +170,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
             fromAlbum -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     data.data?.let { uri ->
+                        Log.d("InspectKnowledge", "onCreate: Uri:" + uri.toString())
                         AddEditor.insertImage(
                             uri.toString(),
                             "dachshund", 320

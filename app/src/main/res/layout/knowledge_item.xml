@@ -24,8 +24,12 @@
                 android:id="@+id/KnowledgeCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:layout_margin="5dp"/>
+                app:rt_view_text_line_space="16sp"
+                android:layout_margin="5dp"
+                app:rt_view_image_height="0"
+                app:rt_view_image_bottom="10"
+                app:rt_view_text_size="16sp"
+                app:rt_view_text_color="@color/black"/>
         </LinearLayout>
         <TextView
             android:id="@+id/DateCard"

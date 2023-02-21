@@ -2,12 +2,18 @@ package com.wxy3265.vmeknowledge
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer
 
 class ScheduleAdapter(val context: Context, val richengList: List<Schedule>):
     RecyclerView.Adapter<ScheduleAdapter.ViewHolder>(){
@@ -32,8 +38,20 @@ class ScheduleAdapter(val context: Context, val richengList: List<Schedule>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val richeng = richengList[position]
-        holder.richengContent.text = richeng.content
-
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context))
+        val options = DisplayImageOptions.Builder()
+            .showImageOnLoading(R.mipmap.ic_launcher)
+            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showImageOnFail(R.mipmap.ic_launcher)
+            .cacheInMemory(true)
+            .cacheOnDisk(true)
+            .considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+            .displayer(FadeInBitmapDisplayer(300))
+            .build()
+        holder.richengContent.text = Html.fromHtml(richeng.content,
+            URLImageGetter(richeng.content, context, holder.richengContent, options),
+            null)
     }
 
     override fun getItemCount() = richengList.size

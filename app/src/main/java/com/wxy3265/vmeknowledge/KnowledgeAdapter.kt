@@ -2,6 +2,7 @@ package com.wxy3265.vmeknowledge
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import android.text.Html
 import android.util.Log
@@ -11,6 +12,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.internal.ContextUtils.getActivity
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer
+import io.github.angebagui.mediumtextview.MediumTextView
 
 
 class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>) :
@@ -29,6 +36,7 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
         viewHolder.itemView.setOnClickListener {
             Log.d(TAG, "onCreateViewHolder: Clicked!")
             val position = viewHolder.adapterPosition
+            Log.d(TAG, "onCreateViewHolder: position")
             val knowledge = knowledgeList[position]
             val intent = Intent(context, InspectKnowledgeActivity::class.java)
             Log.d(TAG, "onCreateViewHolder: Definated!")
@@ -41,11 +49,20 @@ class KnowledgeAdapter(val context: Context, val knowledgeList: List<Knowledge>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val knowledge = knowledgeList[position]
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content, Html.FROM_HTML_MODE_COMPACT))
-        } else {
-            holder.KnowledgeCard.setText(Html.fromHtml(knowledge.Content))
-        }
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context))
+        val options = DisplayImageOptions.Builder()
+            .showImageOnLoading(R.mipmap.ic_launcher)
+            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showImageOnFail(R.mipmap.ic_launcher)
+            .cacheInMemory(true)
+            .cacheOnDisk(true)
+            .considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+            .displayer(FadeInBitmapDisplayer(300))
+            .build()
+        holder.KnowledgeCard.text = Html.fromHtml(knowledge.Content,
+            URLImageGetter(knowledge.Content, context, holder.KnowledgeCard, options),
+            null)
         holder.DateCard.text = knowledge.ReviewDate
     }
 

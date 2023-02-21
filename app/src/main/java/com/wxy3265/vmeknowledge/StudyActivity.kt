@@ -2,12 +2,18 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer
+import kotlinx.android.synthetic.main.activity_inspect_knowledge.*
 import kotlinx.android.synthetic.main.activity_study.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -101,11 +107,20 @@ class StudyActivity : AppCompatActivity() {
     }
 
     private fun showContent(Content: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StudyViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
-        } else {
-            StudyViewer.setText(Html.fromHtml(Content))
-        }
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this))
+        val options = DisplayImageOptions.Builder()
+            .showImageOnLoading(R.mipmap.ic_launcher)
+            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showImageOnFail(R.mipmap.ic_launcher)
+            .cacheInMemory(true)
+            .cacheOnDisk(true)
+            .considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+            .displayer(FadeInBitmapDisplayer(300))
+            .build()
+        StudyViewer.text = Html.fromHtml(Content,
+            URLImageGetter(Content, this, StudyViewer, options),
+            null)
     }
 
 }

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.knowledge_item.*
 class MainActivity : AppCompatActivity(){
     private val knowledgeList = ArrayList<Knowledge>()
     private val scheduleList = ArrayList<Schedule>()
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.N)
     private val tagSet = ArraySet<String>()
     private val reviewInterval = intArrayOf(0 , 1, 2, 4, 7, 15, 30, 90, 180)
     private val TAG = "MainActivity"
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(){
     private val ScheduleManage = 2
     private var state = KnowledgeManage
     val chosenTag = Tag()
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(){
         MainTagRecyclerView.adapter = tagAdapter
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("Range")
     private fun initKnowledges() {
 
@@ -233,5 +233,4 @@ class MainActivity : AppCompatActivity(){
             Log.d(TAG, "setState: suc2")
         }
     }
-
 }

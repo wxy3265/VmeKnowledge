@@ -31,7 +31,6 @@ class EditKnowledgeActivity : AppCompatActivity() {
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         val dbHelper = MyDatabaseHelper(this, "Knowledge.db", 1)
-        Log.d("EditAc", "acces")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_knowledge)
         supportActionBar?.hide()
@@ -52,14 +51,13 @@ class EditKnowledgeActivity : AppCompatActivity() {
             arrayOf(extraData.toString()), null, null, null)
         if (cursor.moveToFirst()) {
             do {
-                Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 EditEditor.html = content
             } while (cursor.moveToNext())
             cursor.close()
         }
-
+        Log.d(TAG, "onCreate: " + EditEditor.html)
         EditEditor.setEditorHeight(200)
         EditEditor.setFontSize(22)
         EditEditor.setEditorFontColor(Color.BLACK)

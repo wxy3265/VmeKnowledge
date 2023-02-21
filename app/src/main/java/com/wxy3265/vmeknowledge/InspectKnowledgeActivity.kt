@@ -2,6 +2,7 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,10 @@ import kotlin.collections.ArrayList
 import android.util.ArraySet
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nostra13.universalimageloader.core.DisplayImageOptions
+import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer
 import kotlinx.android.synthetic.main.activity_inspect_knowledge.*
 
 
@@ -25,9 +30,10 @@ import kotlinx.android.synthetic.main.activity_inspect_knowledge.*
 class InspectKnowledgeActivity : AppCompatActivity() {
 
     private val tagList = ArrayList<String>()
+    private val TAG = "InspectKnowledge"
 
-    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("Range")
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspect_knowledge)
@@ -40,7 +46,6 @@ class InspectKnowledgeActivity : AppCompatActivity() {
         var ID = -1
         if (cursor.moveToFirst()) {
             do {
-                Log.d("cursor", "initKnowledges: suc")
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val createdate = cursor.getString(cursor.getColumnIndex("createdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
@@ -92,12 +97,25 @@ class InspectKnowledgeActivity : AppCompatActivity() {
     }
 
     private fun showInspectContent(Content: String) {
-        val InspectViewer = findViewById<TextView>(R.id.InspectViewer)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             InspectViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
         } else {
             InspectViewer.setText(Html.fromHtml(Content))
         }
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this))
+        val options = DisplayImageOptions.Builder()
+            .showImageOnLoading(R.mipmap.ic_launcher)
+            .showImageForEmptyUri(R.mipmap.ic_launcher)
+            .showImageOnFail(R.mipmap.ic_launcher)
+            .cacheInMemory(true)
+            .cacheOnDisk(true)
+            .considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+            .displayer(FadeInBitmapDisplayer(300))
+            .build()
+        InspectViewer.text = Html.fromHtml(Content,
+            URLImageGetter(Content, this, InspectViewer, options),
+            null)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
