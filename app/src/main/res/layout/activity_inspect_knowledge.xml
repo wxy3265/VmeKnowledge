@@ -20,9 +20,12 @@
         android:layout_margin="15dp"
         android:background="@drawable/borderline">
         <ScrollView
+            android:id="@+id/InspectScrool"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:clickable="true"
+            android:layout_margin="10dp"
+            android:focusable="true">
             <TextView
                 android:id="@+id/InspectViewer"
                 android:layout_width="match_parent"

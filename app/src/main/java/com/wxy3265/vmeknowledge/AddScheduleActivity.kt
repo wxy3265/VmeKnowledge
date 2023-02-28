@@ -15,7 +15,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
-import kotlinx.android.synthetic.main.activity_add_knowledge.*
 import kotlinx.android.synthetic.main.activity_add_knowledge.AddButtonAdd
 import kotlinx.android.synthetic.main.activity_add_knowledge.AddButtonDelete
 import kotlinx.android.synthetic.main.activity_add_knowledge.AddEditor
@@ -81,8 +80,9 @@ class AddScheduleActivity : AppCompatActivity() {
         AddEditor.setPlaceholder("在这里输入...")
         AddEditor.focusEditor()
 
+        AddTagButton.visibility = View.GONE
         AddTagButton.setOnClickListener {
-            val ZhuanAddTag = Intent(this, ChooseTagActivity::class.java)
+            val ZhuanAddTag = Intent(this, ChooseKnowledgeTagActivity::class.java)
             startActivityForResult(ZhuanAddTag, forTag)
         }
         AddTimeButton.setOnClickListener {
@@ -90,12 +90,18 @@ class AddScheduleActivity : AppCompatActivity() {
             //startActivityForResult(AddTimeTag, forTag)
             //kotlin
             CardDatePickerDialog.builder(this)
+                .setTitle("设置结束时间")
+                .showBackNow(false)
+                .setThemeColor(Color.rgb(98, 0, 238))
+                .setOnChoose {
+                    endMilliTime = it
+                }.build().show()
+            CardDatePickerDialog.builder(this)
                 .setTitle("设置开始时间")
                 .showBackNow(false)
                 .setThemeColor(Color.rgb(98, 0, 238))
                 .setOnChoose {
                     startMilliTime = it
-                    endMilliTime = it
                 }.build().show()
         }
         AddButtonAdd.setOnClickListener {

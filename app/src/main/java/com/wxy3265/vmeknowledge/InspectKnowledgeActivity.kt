@@ -79,17 +79,15 @@ class InspectKnowledgeActivity : AppCompatActivity() {
         }
         cursor.close()
 
-        val InspectViewer = findViewById<TextView>(R.id.InspectViewer)
         InspectViewer.setOnClickListener {
             val intent = Intent(this, EditKnowledgeActivity::class.java)
             intent.putExtra("ID", ID)
             startActivity(intent)
             finish()
-
-
         }
 
         InspectButtonDelete.setOnClickListener {
+            Log.d(TAG, "onCreate: Clicked")
             db.delete("Knowledge", "id = ?", arrayOf(extraData.toString()))
             Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show()
             finish()

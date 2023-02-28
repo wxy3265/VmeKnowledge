@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    tools:context=".ChooseTagActivity">
+    tools:context=".ChooseKnowledgeTagActivity">
 
     <!-- view for AdMob Interstitial Ad -->
     <TextView

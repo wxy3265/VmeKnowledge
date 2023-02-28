@@ -1,0 +1,310 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_700">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/EditS_undo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/undo" />
+
+            <ImageButton
+                android:id="@+id/EditS_redo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/redo" />
+
+            <ImageButton
+                android:id="@+id/EditS_bold"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/bold" />
+
+            <ImageButton
+                android:id="@+id/EditS_italic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/italic" />
+
+            <ImageButton
+                android:id="@+id/EditS_subscript"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/subscript" />
+
+            <ImageButton
+                android:id="@+id/EditS_superscript"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/superscript" />
+
+            <ImageButton
+                android:id="@+id/EditS_strikethrough"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/strikethrough" />
+
+            <ImageButton
+                android:id="@+id/EditS_underline"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/underline" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h1" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h2" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h3" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h4" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h5" />
+
+            <ImageButton
+                android:id="@+id/EditS_heading6"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h6" />
+
+            <ImageButton
+                android:id="@+id/EditS_txt_color"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/txt_color" />
+
+            <ImageButton
+                android:id="@+id/EditS_bg_color"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/bg_color" />
+
+            <ImageButton
+                android:id="@+id/EditS_indent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/indent" />
+
+            <ImageButton
+                android:id="@+id/EditS_outdent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/outdent" />
+
+            <ImageButton
+                android:id="@+id/EditS_align_left"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_left" />
+
+            <ImageButton
+                android:id="@+id/EditS_align_center"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_center" />
+
+            <ImageButton
+                android:id="@+id/EditS_align_right"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_right" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_bullets"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/bullets" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_numbers"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/numbers" />
+
+            <ImageButton
+                android:id="@+id/EditS_blockquote"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/blockquote" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_camera"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/youtube" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/insert_image" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_audio"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/music" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_video"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/video" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_link"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/insert_link" />
+
+            <ImageButton
+                android:id="@+id/EditS_insert_checkbox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@android:drawable/checkbox_on_background" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <com.wxy3265.vmeknowledge.KnowledgeEditor
+        android:id="@+id/EditEditorS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
+        <Button
+            android:id="@+id/EditSButtonSave"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="保存"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:backgroundTint="@color/green" />
+        <Button
+            android:id="@+id/EditSButtonDelete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
+            android:textSize="18sp"
+            android:text="删除" />
+        <Button
+            android:id="@+id/ChangeTagS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="18sp"
+            android:text="修改标签" />
+        <Button
+            android:id="@+id/ChangeTimeS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/purple_700"
+            android:textSize="18sp"
+            android:text="修改时间" />
+    </LinearLayout>
+
+</LinearLayout>

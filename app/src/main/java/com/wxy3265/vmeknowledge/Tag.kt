@@ -9,9 +9,6 @@ class Tag(var orstr: String?, var tSet: MutableSet<String>?) {
         tSet = orstr.split(delim).toMutableSet()
     }
     constructor(tList: MutableSet<String>?) : this("", tList) {
-
-
-        
         for (str in tSet!!) {
             if (str != "")
                 orstr += delim + str

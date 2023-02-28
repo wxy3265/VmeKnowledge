@@ -26,6 +26,8 @@ class EditKnowledgeActivity : AppCompatActivity() {
     val fromAlbum = 2
     val fromAudio = 3
     val fromVideo = 4
+    val forTag = 5
+    private var tags = ""
     lateinit var imageUri: Uri
     lateinit var outputImage:File
     @SuppressLint("Range")
@@ -37,8 +39,9 @@ class EditKnowledgeActivity : AppCompatActivity() {
 
         val ChangeTagButton: Button = findViewById(R.id.ChangeTag)
         ChangeTagButton.setOnClickListener {
-            val ZhuanAddTag = Intent(this, ChooseTagActivity::class.java)
-            startActivity(ZhuanAddTag)
+            val ZhuanAddTag = Intent(this, ChooseKnowledgeTagActivity::class.java)
+            ZhuanAddTag.putExtra("tags", tags)
+            startActivityForResult(ZhuanAddTag, forTag)
         }
 
         val extraData = intent.getIntExtra("ID",-1)
@@ -54,6 +57,7 @@ class EditKnowledgeActivity : AppCompatActivity() {
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 EditEditor.html = content
+                Log.d("InspectKnowledge", "onCreate:Ed Uri:" + content)
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -68,6 +72,7 @@ class EditKnowledgeActivity : AppCompatActivity() {
         EditButtonSave.setOnClickListener {
             val values = ContentValues()
             values.put("Content", EditEditor.html)
+            values.put("tag", tags)
             db.update("Knowledge", values, "id = ?", arrayOf(extraData.toString()))
             Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show()
             finish()
@@ -177,8 +182,9 @@ class EditKnowledgeActivity : AppCompatActivity() {
             fromAlbum -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     data.data?.let { uri ->
+                        Log.d("InspectKnowledge", "onCreate: Uri:" + uri.path.toString())
                         EditEditor.insertImage(
-                            uri.toString(),
+                            uri.path.toString(),
                             "dachshund", 320
                         )
                     }
@@ -196,6 +202,13 @@ class EditKnowledgeActivity : AppCompatActivity() {
                     data.data?.let { uri ->
                         EditEditor.insertVideo( uri.toString() , 320)
                     }
+                }
+            }
+            forTag -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val returnedData = data?.getStringExtra("tag_return")
+                    Log.d("tagtest", "onActivityResult: " + returnedData)
+                    if (returnedData != "" && returnedData != "null") tags = returnedData.toString()
                 }
             }
         }

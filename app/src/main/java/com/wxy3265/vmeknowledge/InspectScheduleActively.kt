@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Html
 import android.util.ArraySet
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -51,47 +52,23 @@ class InspectScheduleActively : AppCompatActivity() {
                 Log.d(TAG, "onCreate: 2")
                 ID = id
                 showInspectContent(content)
-                val Recursor = db.query("Knowledge", null, "createdate=?",
-                    arrayOf(startTime), null, null, null)
-                if(Recursor.moveToFirst()){
-                    var outText = ""
-                    var timeth = -1
-                    do{
-                        timeth++
-                        val reviewdate = Recursor.getString(Recursor.getColumnIndex("reviewdate"))
-                        if(timeth == 0)continue
-                        outText = outText + reviewdate + "第" + timeth.toString() + "次学习\n"
-                    }while (Recursor.moveToNext())
-                    Recursor.close()
-                    val kTag = Tag(tag)
-                    val tSet = ArraySet<String>()
-                    for (str in kTag.tSet!!) {
-                        if (str != "") tSet.add(str)
-                    }
-                    showTag(tSet)
-                    outText = outText + startTime+ "创建,复习" +endTime.toString() + "次"
-                    showReviewContent(outText)
-                }
+                TimeViewer.text = "开始时间: " + startTime + '\n' + "结束时间: " + endTime
             } while (cursor.moveToNext())
         }
         cursor.close()
-        Log.d(TAG, "onCreate: 3")
+        InspectRecyclerscheduleView.visibility = View.GONE
         val InspectViewer = findViewById<TextView>(R.id.InspectScheduleViewer)
         InspectViewer.setOnClickListener {
             val intent = Intent(this, EditScheduleActivity::class.java)
             intent.putExtra("ID", ID)
             startActivity(intent)
             finish()
-
-
         }
-        Log.d(TAG, "onCreate: 4")
         InspectscheduleButtonDelete.setOnClickListener {
             db.delete("Schedule", "id = ?", arrayOf(extraData.toString()))
             Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show()
             finish()
         }
-        Log.d(TAG, "onCreate: 5")
     }
     private val TAG1 = "InspectScheduleActively"
     private fun showInspectContent(Content: String) {
@@ -128,16 +105,5 @@ class InspectScheduleActively : AppCompatActivity() {
         }
         val tagAdapter = TagAdapter(tagList)
         InspectRecyclerView.adapter = tagAdapter
-    }
-    private val TAG2 = "InspectScheduleActively"
-    private fun showReviewContent(Content: String) {
-        Log.d(TAG, "showReviewContent: 9")
-        val ReviewViewer = findViewById<TextView>(R.id.ReviewViewer)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ReviewViewer.setText(Html.fromHtml(Content, Html.FROM_HTML_MODE_COMPACT))
-        } else {
-            ReviewViewer.setText(Html.fromHtml(Content))
-        }
-        Log.d(TAG, "showReviewContent: 10")
     }
 }

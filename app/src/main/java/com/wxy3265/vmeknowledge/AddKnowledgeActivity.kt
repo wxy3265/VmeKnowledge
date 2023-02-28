@@ -2,13 +2,17 @@ package com.wxy3265.vmeknowledge
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.MediaStore.Images.ImageColumns
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,7 +21,8 @@ import androidx.core.content.FileProvider
 import kotlinx.android.synthetic.main.activity_add_knowledge.*
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
+
 
 class AddKnowledgeActivity : AppCompatActivity() {
     private var TAG: String = "AddKnowledgeActivity"
@@ -29,6 +34,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
     private var tags = ""
     private lateinit var imageUri: Uri
     private lateinit var outputImage:File
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_knowledge)
@@ -44,7 +50,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
 
 
         AddTagButton.setOnClickListener {
-            val ZhuanAddTag = Intent(this, ChooseTagActivity::class.java)
+            val ZhuanAddTag = Intent(this, ChooseKnowledgeTagActivity::class.java)
             startActivityForResult(ZhuanAddTag, forTag)
         }
         AddButtonAdd.setOnClickListener {
@@ -54,7 +60,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
             val formatter = SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss")
             val curDate = Date(System.currentTimeMillis())
             val date: String = formatter.format(curDate)
-                Log.d("InspectKnowledge", "onCreate: Add:" + AddEditor.html)
+            Log.d("InspectKnowledge", "onCreate: Add:" + AddEditor.html)
             val value = ContentValues().apply {
                 put("content", AddEditor.html)
                 put("studytimes", 0)
@@ -160,7 +166,7 @@ class AddKnowledgeActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             takePhoto -> {
-                if (resultCode == Activity.RESULT_OK && data != null) {
+                if (resultCode == Activity.RESULT_OK) {
                     AddEditor.insertImage(
                         imageUri.toString(),
                         "dachshund", 320
@@ -171,7 +177,9 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     data.data?.let { uri ->
                         Log.d("InspectKnowledge", "onCreate: Uri:" + uri.toString())
+
                         AddEditor.insertImage(
+
                             uri.toString(),
                             "dachshund", 320
                         )
@@ -200,5 +208,27 @@ class AddKnowledgeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun getFilePath(context: Context, uri: Uri?): String? {
+        if (null == uri) return null
+        val scheme = uri.scheme
+        var data: String? = null
+        if (scheme == null) data = uri.path else if (ContentResolver.SCHEME_FILE == scheme) {
+            data = uri.path
+        } else if (ContentResolver.SCHEME_CONTENT == scheme) {
+            val cursor: Cursor? = context.getContentResolver()
+                .query(uri, arrayOf(ImageColumns.DATA), null, null, null)
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    val index: Int = cursor.getColumnIndex(ImageColumns.DATA)
+                    if (index > -1) {
+                        data = cursor.getString(index)
+                    }
+                }
+                cursor.close()
+            }
+        }
+        return data
     }
 }
