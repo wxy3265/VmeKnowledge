@@ -62,7 +62,7 @@ class AddScheduleActivity : AppCompatActivity() {
     private val forTag = 5
     private var tags = ""
     private var startMilliTime = System.currentTimeMillis()
-    private var endMilliTime = System.currentTimeMillis()
+    private var endMilliTime = System.currentTimeMillis() + 60000
     private lateinit var imageUri: Uri
     private lateinit var outputImage:File
     var et_startdate: EditText? = null
