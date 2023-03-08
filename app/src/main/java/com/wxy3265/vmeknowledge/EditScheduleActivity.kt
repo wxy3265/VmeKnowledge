@@ -28,8 +28,8 @@ class EditScheduleActivity : AppCompatActivity() {
     val fromVideo = 4
     lateinit var imageUri: Uri
     lateinit var outputImage: File
-    var startMilliTime = 0
-    var endMilliTime = 0
+    var startMilliTime: Long = 0
+    var endMilliTime: Long = 0
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,18 +47,32 @@ class EditScheduleActivity : AppCompatActivity() {
 
         ChangeTimeS.setOnClickListener {
             CardDatePickerDialog.builder(this)
-                .setTitle("设置结束时间")
+                .setTitle("设置日期")
+                .setPickerLayout(R.layout.date_picker)
                 .showBackNow(false)
                 .setThemeColor(Color.rgb(98, 0, 238))
                 .setOnChoose {
-                    endMilliTime = it.toInt()
-                }.build().show()
-            CardDatePickerDialog.builder(this)
-                .setTitle("设置开始时间")
-                .showBackNow(false)
-                .setThemeColor(Color.rgb(98, 0, 238))
-                .setOnChoose {
-                    startMilliTime = it.toInt()
+                    val chosenDate: Long = it
+                    Log.d(TAG, "onCreate: cho" + chosenDate)
+                    CardDatePickerDialog.builder(this)
+                        .setTitle("设置开始时间")
+                        .showBackNow(false)
+                        .setPickerLayout(R.layout.time_picker)
+                        .setDefaultTime(chosenDate)
+                        .setThemeColor(Color.rgb(98, 0, 238))
+                        .setOnChoose {
+                            startMilliTime = it
+                            CardDatePickerDialog.builder(this)
+                                .setTitle("设置结束时间")
+                                .setPickerLayout(R.layout.time_picker)
+                                .showBackNow(false)
+                                .setMinTime(startMilliTime + 60000)
+                                .setDefaultTime(startMilliTime + 60000)
+                                .setThemeColor(Color.rgb(98, 0, 238))
+                                .setOnChoose {
+                                    endMilliTime = it
+                                }.build().show()
+                        }.build().show()
                 }.build().show()
         }
 
@@ -75,8 +89,8 @@ class EditScheduleActivity : AppCompatActivity() {
                 val content = cursor.getString(cursor.getColumnIndex("content"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 EditEditorS.html = content
-                startMilliTime = cursor.getInt(cursor.getColumnIndex("startMilliTime"))
-                endMilliTime = cursor.getInt(cursor.getColumnIndex("endMilliTime"))
+                startMilliTime = cursor.getLong(cursor.getColumnIndex("startMilliTime"))
+                endMilliTime = cursor.getLong(cursor.getColumnIndex("endMilliTime"))
             } while (cursor.moveToNext())
             cursor.close()
         }

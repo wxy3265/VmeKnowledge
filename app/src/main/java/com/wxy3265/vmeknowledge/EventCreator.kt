@@ -11,7 +11,7 @@ import java.util.Random
 
 object EventCreator {
 
-    private val random = Random()
+    val random = Random()
     private val titles = listOf("Title", "Event", "Android", "Sport", "Yoga", "Shopping", "Meeting")
     private val subTitles = listOf("City Center", "@Home", "urgent", "New York", null)
     private val weekDays = DayOfWeek.values()

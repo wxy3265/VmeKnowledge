@@ -90,18 +90,32 @@ class AddScheduleActivity : AppCompatActivity() {
             //startActivityForResult(AddTimeTag, forTag)
             //kotlin
             CardDatePickerDialog.builder(this)
-                .setTitle("设置结束时间")
+                .setTitle("设置日期")
+                .setPickerLayout(R.layout.date_picker)
                 .showBackNow(false)
                 .setThemeColor(Color.rgb(98, 0, 238))
                 .setOnChoose {
-                    endMilliTime = it
-                }.build().show()
-            CardDatePickerDialog.builder(this)
-                .setTitle("设置开始时间")
-                .showBackNow(false)
-                .setThemeColor(Color.rgb(98, 0, 238))
-                .setOnChoose {
-                    startMilliTime = it
+                    val chosenDate: Long = it
+                    Log.d(TAG, "onCreate: cho" + chosenDate)
+                    CardDatePickerDialog.builder(this)
+                        .setTitle("设置开始时间")
+                        .showBackNow(false)
+                        .setPickerLayout(R.layout.time_picker)
+                        .setDefaultTime(chosenDate)
+                        .setThemeColor(Color.rgb(98, 0, 238))
+                        .setOnChoose {
+                            startMilliTime = it
+                            CardDatePickerDialog.builder(this)
+                                .setTitle("设置结束时间")
+                                .setPickerLayout(R.layout.time_picker)
+                                .showBackNow(false)
+                                .setMinTime(startMilliTime + 60000)
+                                .setDefaultTime(startMilliTime + 60000)
+                                .setThemeColor(Color.rgb(98, 0, 238))
+                                .setOnChoose {
+                                    endMilliTime = it
+                                }.build().show()
+                        }.build().show()
                 }.build().show()
         }
         AddButtonAdd.setOnClickListener {

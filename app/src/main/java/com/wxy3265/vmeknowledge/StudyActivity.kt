@@ -46,7 +46,7 @@ class StudyActivity : AppCompatActivity() {
                 val reviewdate = cursor.getString(cursor.getColumnIndex("reviewdate"))
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val studyTimes = cursor.getInt(cursor.getColumnIndex("studytimes"))
-                val milliTime = cursor.getInt(cursor.getColumnIndex("milliTime"))
+                val milliTime = cursor.getLong(cursor.getColumnIndex("milliTime"))
                 val tag = cursor.getString(cursor.getColumnIndex("tag"))
                 if(studyTimes == -1) continue
                 if (studyTimes <= 8) {
