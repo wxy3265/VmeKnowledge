@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jakewharton.threetenabp.AndroidThreeTen
 import de.tobiasschuerg.weekview.data.Event
 import de.tobiasschuerg.weekview.data.EventConfig
 import de.tobiasschuerg.weekview.util.TimeSpan
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(MainToolbar)
+        AndroidThreeTen.init(this)
 
         menuDate.setOnClickListener {
             state = ScheduleManage
@@ -257,8 +259,8 @@ class MainActivity : AppCompatActivity(){
                     v.parent.requestDisallowInterceptTouchEvent(false)
                 }
                 2 -> {
-                    Log.d("Zoom", "2-pointer touch")
-                    v.parent.requestDisallowInterceptTouchEvent(true)
+                    //Log.d("Zoom", "2-pointer touch")
+                    //v.parent.requestDisallowInterceptTouchEvent(true)
                 }
             }
             false
@@ -303,8 +305,8 @@ class MainActivity : AppCompatActivity(){
             menuKnowledge.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
             MainStudy.visibility = View.GONE
             MainTagRecyclerView.visibility = View.GONE
-            MainWeekScrollView.visibility = View.VISIBLE
             initMainWeekView()
+            MainWeekScrollView.visibility = View.VISIBLE
         }
     }
 }

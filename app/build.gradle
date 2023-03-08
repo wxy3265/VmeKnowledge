@@ -13,7 +13,7 @@ android {
         minSdk 22
         targetSdk 33
         versionCode 1
-        versionName "0.11"
+        versionName "0.111"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,5 +63,6 @@ dependencies {
     implementation 'io.github.guaishoun:gyso-treeview:1.0.1'
     implementation 'com.github.alamkanak:android-week-view:1.2.6'
     implementation 'com.github.tobiasschuerg:android-week-view:-SNAPSHOT'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.3'
 }
 
