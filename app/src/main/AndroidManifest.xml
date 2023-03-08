@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
     <!-- Include required permissions for Google Mobile Ads to run. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,20 +16,29 @@
         android:roundIcon="@mipmap/icons_bookmark"
         android:supportsRtl="true"
         android:theme="@style/Theme.VmeKnowledge"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".WeekViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AsynChronousActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WeekTestActivity"
+            android:exported="false" />
         <activity
             android:name=".EditScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".InspectScheduleActively"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".AddScheduleActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -37,7 +46,7 @@
         <activity
             android:name=".ManageScheduleActivity"
             android:exported="false"
-            android:label="日程管理">
+            android:label="日程管理" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -45,7 +54,7 @@
         <activity
             android:name=".ChooseKnowledgeTagActivity"
             android:exported="false"
-            android:label="@string/title_activity_choose_tag">
+            android:label="@string/title_activity_choose_tag" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -65,21 +74,21 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".StudyTagActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".InspectKnowledgeActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".EditKnowledgeActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -92,14 +101,14 @@
         </activity>
         <activity
             android:name=".StudyActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".AddKnowledgeActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -107,7 +116,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="威我知识">
+            android:label="威我知识" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -123,7 +132,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.wxy3265.vmeknowledge.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />

@@ -16,6 +16,26 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:id="@+id/menuMindmap"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:background="@drawable/borderline"
+        android:text="知识谱系"
+        android:textColor="@color/black" />
+    <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuCalendar"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:background="@drawable/borderline"
+        android:text="日程显示"
+        android:textColor="@color/black" />
+    <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:id="@+id/menuDate"
         android:layout_margin="5dp"
         android:gravity="center"

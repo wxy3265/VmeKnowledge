@@ -40,4 +40,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="action_today">action_today</string>
+    <string name="action_day_view">action_day_view</string>
+    <string name="action_three_day_view">action_three_day_view</string>
+    <string name="action_week_view">action_week_view</string>
 </resources>

@@ -49,12 +49,16 @@
         android:background="@drawable/borderline"
         android:layout_margin="10dp">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/TimeViewer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:textSize="22sp" />
+            android:textSize="15sp" />
+        </ScrollView>
 
     </LinearLayout>
 

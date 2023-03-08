@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
@@ -33,6 +34,30 @@
         android:text="开始学习"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+    <ScrollView
+        android:id="@+id/MainWeekScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <de.tobiasschuerg.weekview.view.WeekView
+            android:id="@+id/MainWeekView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:accent_color="@color/colorAccent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                tools:text="@tools:sample/full_names" />
+
+        </de.tobiasschuerg.weekview.view.WeekView>
+
+    </ScrollView>
+
     <include layout="@layout/bottom_menu" />
 
 </LinearLayout>

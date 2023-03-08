@@ -16,9 +16,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import de.tobiasschuerg.weekview.data.Event
+import de.tobiasschuerg.weekview.data.EventConfig
+import de.tobiasschuerg.weekview.util.TimeSpan
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_menu.*
 import kotlinx.android.synthetic.main.knowledge_item.*
+import org.threeten.bp.Duration
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalTime
+import org.threeten.bp.temporal.ChronoUnit
 
 class MainActivity : AppCompatActivity(){
     private val knowledgeList = ArrayList<Knowledge>()
@@ -31,6 +38,7 @@ class MainActivity : AppCompatActivity(){
     private val tagList = ArrayList<String>()
     private val KnowledgeManage = 1
     private val ScheduleManage = 2
+    private val ScheduleView = 3
     private var state = KnowledgeManage
     val chosenTag = Tag()
     @RequiresApi(Build.VERSION_CODES.N)
@@ -47,6 +55,13 @@ class MainActivity : AppCompatActivity(){
         menuKnowledge.setOnClickListener {
             state = KnowledgeManage
             setState()
+        }
+        menuCalendar.setOnClickListener {
+            state = ScheduleView
+            setState()
+            //val intent = Intent(this, MainWeekViewActivity::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+            //startActivity(intent)
         }
 
         MainStudy.setOnClickListener {
@@ -207,6 +222,49 @@ class MainActivity : AppCompatActivity(){
         MainCardRecyclerview.adapter = adapter
     }
 
+    private  fun initMainWeekView() {
+        val config = EventConfig(showSubtitle = false, showTimeEnd = false)
+        MainWeekView.eventConfig = config
+        MainWeekView.setShowNowIndicator(true)
+
+        // set up the MainWeekView with the data
+        MainWeekView.addEvents(EventCreator.weekData)
+
+        val nowEvent = Event.Single(
+            id = 1337,
+            date = LocalDate.now(),
+            title = "Current hour",
+            shortTitle = "Now",
+            timeSpan = TimeSpan.of(LocalTime.now().truncatedTo(ChronoUnit.HOURS), Duration.ofHours(1)),
+            backgroundColor = Color.RED,
+            textColor = Color.WHITE
+        )
+        MainWeekView.addEvent(nowEvent)
+
+        // optional: add an onClickListener for each event
+        MainWeekView.setEventClickListener {
+            //Toast.makeText(applicationContext, "Removing " + it.event.title, Toast.LENGTH_SHORT).show()
+            //MainWeekView.removeView(it)
+        }
+
+        // optional: register a context menu to each event
+        registerForContextMenu(MainWeekView)
+
+        MainWeekView.setOnTouchListener { v, event ->
+            when (event.pointerCount) {
+                1 -> {
+                    Log.d("Scroll", "1-pointer touch")
+                    v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+                2 -> {
+                    Log.d("Zoom", "2-pointer touch")
+                    v.parent.requestDisallowInterceptTouchEvent(true)
+                }
+            }
+            false
+        }
+    }
+    
     private fun startAdd() {
         val intentAddKnowledgeActivity = Intent(this, AddKnowledgeActivity::class.java)
         val intentAddScheduleActivity = Intent(this , AddScheduleActivity::class.java)
@@ -218,19 +276,35 @@ class MainActivity : AppCompatActivity(){
     private fun setState() {
         if (state == KnowledgeManage) {
             menuDate.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            menuCalendar.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            menuMindmap.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
             menuKnowledge.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline_purple, null)
             MainStudy.visibility = View.VISIBLE
             MainTagRecyclerView.visibility = View.VISIBLE
+            MainCardRecyclerview.visibility = View.VISIBLE
+            MainWeekScrollView.visibility = View.GONE
             initKnowledges()
             initTag()
-        } else {
+        } else if (state == ScheduleManage) {
             menuDate.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline_purple, null)
+            menuCalendar.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            menuMindmap.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
             menuKnowledge.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
             MainStudy.visibility = View.GONE
             MainTagRecyclerView.visibility = View.GONE
-            Log.d(TAG, "setState: suc1")
+            MainCardRecyclerview.visibility = View.VISIBLE
+            MainWeekScrollView.visibility = View.GONE
             initSchedule()
-            Log.d(TAG, "setState: suc2")
+        } else if (state == ScheduleView) {
+            MainCardRecyclerview.visibility = View.GONE
+            menuDate.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            menuCalendar.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline_purple, null)
+            menuMindmap.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            menuKnowledge.background = ResourcesCompat.getDrawable(resources, R.drawable.borderline, null)
+            MainStudy.visibility = View.GONE
+            MainTagRecyclerView.visibility = View.GONE
+            MainWeekScrollView.visibility = View.VISIBLE
+            initMainWeekView()
         }
     }
 }
